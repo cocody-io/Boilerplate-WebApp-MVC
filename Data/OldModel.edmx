@@ -1,0 +1,861 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BASETESTModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Atelier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="label" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="ARCHIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BonExpertise">
+          <Key>
+            <PropertyRef Name="id_expertise" />
+          </Key>
+          <Property Name="id_expertise" Type="int" Nullable="false" />
+          <Property Name="bonNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_expertizer" Type="int" Nullable="false" />
+          <Property Name="Observation" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CQ_corrige" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="cause" Type="varchar" MaxLength="50" />
+          <Property Name="imputation" Type="varchar" MaxLength="50" />
+          <Property Name="ventilation" Type="varchar" MaxLength="50" />
+          <Property Name="decision" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="poids_jete" Type="varchar" MaxLength="20" />
+          <Property Name="date_expertise" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Critere_CQ">
+          <Key>
+            <PropertyRef Name="Id_Critere" />
+          </Key>
+          <Property Name="Id_Critere" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle_CQ" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="id_machine" />
+          </Key>
+          <Property Name="id_machine" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="id_guarantor_maintenance" Type="int" />
+          <Property Name="ARCHIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="id_chorus" />
+          </Key>
+          <Property Name="id_chorus" Type="int" Nullable="false" />
+          <Property Name="id_isis" Type="varchar" MaxLength="8" />
+          <Property Name="last_name" Type="varchar" MaxLength="25" />
+          <Property Name="first_name" Type="varchar" MaxLength="25" />
+          <Property Name="id_department" Type="int" />
+          <Property Name="telephone_number" Type="int" />
+          <Property Name="email" Type="varchar" MaxLength="50" />
+          <Property Name="administrateur" Type="bit" Nullable="false" />
+          <Property Name="id_Suppleant" Type="int" />
+          <Property Name="IlotID" Type="int" />
+          <Property Name="ARCHIVE" Type="bit" Nullable="false" />
+          <Property Name="HierarchiqueID" Type="int" />
+          <Property Name="DateArchive" Type="datetime" />
+        </EntityType>
+        <EntityType Name="PosteMachine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="label" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="AtelierId" Type="int" />
+          <Property Name="ARCHIVE" Type="bit" Nullable="false" />
+          <Property Name="BatimentId" Type="int" />
+        </EntityType>
+        <EntityType Name="SaisieChuteCoupeuse">
+          <Key>
+            <PropertyRef Name="id_saisie_chute" />
+          </Key>
+          <Property Name="id_saisie_chute" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ident_coupe" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="nom_coupe" Type="varchar" MaxLength="20" />
+          <Property Name="date_saisie" Type="datetime" Nullable="false" />
+          <Property Name="equipe" Type="varchar" MaxLength="20" />
+          <Property Name="num_nk" Type="int" Nullable="false" />
+          <Property Name="nom_fournisseur" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="date_fab_nk" Type="datetime" Nullable="false" />
+          <Property Name="num_piece" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SaisiePerte">
+          <Key>
+            <PropertyRef Name="id_saisie" />
+          </Key>
+          <Property Name="id_saisie" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_chorus" Type="int" Nullable="false" />
+          <Property Name="id_isis" Type="varchar" MaxLength="20" />
+          <Property Name="AgentGroupe" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="MachineName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="id_product" Type="int" Nullable="false" />
+          <Property Name="bobineNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="DateFab" Type="datetime" Nullable="false" />
+          <Property Name="bonNumber" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="typeCQ" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TypeProduit" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="TringleNbr" Type="int" />
+          <Property Name="TypeRetour" Type="bit" Nullable="false" />
+          <Property Name="commentaire" Type="varchar(max)" />
+          <Property Name="date_saisie" Type="datetime" Nullable="false" />
+          <Property Name="receptionZE_status" Type="bit" Nullable="false" />
+          <Property Name="date_ReceptionZE" Type="datetime" />
+          <Property Name="expertise_status" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="tCQ_PK">
+          <Key>
+            <PropertyRef Name="Id_CQ_PK" />
+          </Key>
+          <Property Name="Id_CQ_PK" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nom_CQ_PK" Type="nvarchar" MaxLength="15" />
+          <Property Name="Libelle_CQ_PK" Type="nvarchar" MaxLength="100" />
+          <Property Name="Type_CQ_PK" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tCQ_UJO">
+          <Key>
+            <PropertyRef Name="Id_CQ_UJO" />
+          </Key>
+          <Property Name="Id_CQ_UJO" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Libelle_CQ_UJO" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="tFournisseur">
+          <Key>
+            <PropertyRef Name="nom_fournisseur" />
+          </Key>
+          <Property Name="id_fournisseur" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nom_fournisseur" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="libelle_fournisseur" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tNK">
+          <Key>
+            <PropertyRef Name="num_nk" />
+          </Key>
+          <Property Name="num_nk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="libelle_nk" Type="varchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tSaisie_CQ_PK">
+          <Key>
+            <PropertyRef Name="id_saisie_pk" />
+          </Key>
+          <Property Name="id_saisie_pk" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="num_saisie_CQ_pk" Type="int" Nullable="false" />
+          <Property Name="nom_CQ_pk" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pds_CQ_pk" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="temps" Type="int" />
+          <Property Name="type_CQ_pk" Type="varchar" MaxLength="20" />
+        </EntityType>
+        <EntityType Name="tSaisie_CQ_UJO">
+          <Key>
+            <PropertyRef Name="id_saisie_ujo" />
+          </Key>
+          <Property Name="id_saisie_ujo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="num_saisie_CQ_ujo" Type="int" Nullable="false" />
+          <Property Name="nom_CQ_ujo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pds_CQ_ujo" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__BonExpert__id_ex__65C116E7">
+          <End Role="SaisiePerte" Type="Self.SaisiePerte" Multiplicity="1" />
+          <End Role="BonExpertise" Type="Self.BonExpertise" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SaisiePerte">
+              <PropertyRef Name="id_saisie" />
+            </Principal>
+            <Dependent Role="BonExpertise">
+              <PropertyRef Name="id_expertise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Machine__id_guar__0B91BA14">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id_chorus" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="id_guarantor_maintenance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Personne__Hierar__0F624AF8">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Personne1" Type="Self.Personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id_chorus" />
+            </Principal>
+            <Dependent Role="Personne1">
+              <PropertyRef Name="HierarchiqueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Personne__id_Sup__114A936A">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Personne1" Type="Self.Personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id_chorus" />
+            </Principal>
+            <Dependent Role="Personne1">
+              <PropertyRef Name="id_Suppleant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__PosteMach__Ateli__1332DBDC">
+          <End Role="Atelier" Type="Self.Atelier" Multiplicity="0..1" />
+          <End Role="PosteMachine" Type="Self.PosteMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atelier">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PosteMachine">
+              <PropertyRef Name="AtelierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SaisiePer__id_ch__60083D91">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+          <End Role="SaisiePerte" Type="Self.SaisiePerte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id_chorus" />
+            </Principal>
+            <Dependent Role="SaisiePerte">
+              <PropertyRef Name="id_chorus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tSaisie_C__num_s__44952D46">
+          <End Role="SaisieChuteCoupeuse" Type="Self.SaisieChuteCoupeuse" Multiplicity="1" />
+          <End Role="tSaisie_CQ_PK" Type="Self.tSaisie_CQ_PK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaisieChuteCoupeuse">
+              <PropertyRef Name="id_saisie_chute" />
+            </Principal>
+            <Dependent Role="tSaisie_CQ_PK">
+              <PropertyRef Name="num_saisie_CQ_pk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tSaisie_C__num_s__4959E263">
+          <End Role="SaisieChuteCoupeuse" Type="Self.SaisieChuteCoupeuse" Multiplicity="1" />
+          <End Role="tSaisie_CQ_UJO" Type="Self.tSaisie_CQ_UJO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaisieChuteCoupeuse">
+              <PropertyRef Name="id_saisie_chute" />
+            </Principal>
+            <Dependent Role="tSaisie_CQ_UJO">
+              <PropertyRef Name="num_saisie_CQ_ujo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BASETESTModelStoreContainer">
+          <EntitySet Name="Atelier" EntityType="Self.Atelier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BonExpertise" EntityType="Self.BonExpertise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Critere_CQ" EntityType="Self.Critere_CQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Machine" EntityType="Self.Machine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Personne" EntityType="Self.Personne" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PosteMachine" EntityType="Self.PosteMachine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaisieChuteCoupeuse" EntityType="Self.SaisieChuteCoupeuse" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaisiePerte" EntityType="Self.SaisiePerte" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCQ_PK" EntityType="Self.tCQ_PK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tCQ_UJO" EntityType="Self.tCQ_UJO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tFournisseur" EntityType="Self.tFournisseur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tNK" EntityType="Self.tNK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tSaisie_CQ_PK" EntityType="Self.tSaisie_CQ_PK" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tSaisie_CQ_UJO" EntityType="Self.tSaisie_CQ_UJO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__BonExpert__id_ex__65C116E7" Association="Self.FK__BonExpert__id_ex__65C116E7">
+            <End Role="SaisiePerte" EntitySet="SaisiePerte" />
+            <End Role="BonExpertise" EntitySet="BonExpertise" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Machine__id_guar__0B91BA14" Association="Self.FK__Machine__id_guar__0B91BA14">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Machine" EntitySet="Machine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Personne__Hierar__0F624AF8" Association="Self.FK__Personne__Hierar__0F624AF8">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Personne1" EntitySet="Personne" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Personne__id_Sup__114A936A" Association="Self.FK__Personne__id_Sup__114A936A">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="Personne1" EntitySet="Personne" />
+          </AssociationSet>
+          <AssociationSet Name="FK__PosteMach__Ateli__1332DBDC" Association="Self.FK__PosteMach__Ateli__1332DBDC">
+            <End Role="Atelier" EntitySet="Atelier" />
+            <End Role="PosteMachine" EntitySet="PosteMachine" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SaisiePer__id_ch__60083D91" Association="Self.FK__SaisiePer__id_ch__60083D91">
+            <End Role="Personne" EntitySet="Personne" />
+            <End Role="SaisiePerte" EntitySet="SaisiePerte" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tSaisie_C__num_s__44952D46" Association="Self.FK__tSaisie_C__num_s__44952D46">
+            <End Role="SaisieChuteCoupeuse" EntitySet="SaisieChuteCoupeuse" />
+            <End Role="tSaisie_CQ_PK" EntitySet="tSaisie_CQ_PK" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tSaisie_C__num_s__4959E263" Association="Self.FK__tSaisie_C__num_s__4959E263">
+            <End Role="SaisieChuteCoupeuse" EntitySet="SaisieChuteCoupeuse" />
+            <End Role="tSaisie_CQ_UJO" EntitySet="tSaisie_CQ_UJO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BASETESTModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Atelier">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="label" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ARCHIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PosteMachines" Relationship="Self.FK__PosteMach__Ateli__1332DBDC" FromRole="Atelier" ToRole="PosteMachine" />
+        </EntityType>
+        <EntityType Name="BonExpertise">
+          <Key>
+            <PropertyRef Name="id_expertise" />
+          </Key>
+          <Property Name="id_expertise" Type="Int32" Nullable="false" />
+          <Property Name="bonNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_expertizer" Type="Int32" Nullable="false" />
+          <Property Name="Observation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CQ_corrige" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="cause" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="imputation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ventilation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="decision" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="poids_jete" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="date_expertise" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="SaisiePerte" Relationship="Self.FK__BonExpert__id_ex__65C116E7" FromRole="BonExpertise" ToRole="SaisiePerte" />
+        </EntityType>
+        <EntityType Name="Critere_CQ">
+          <Key>
+            <PropertyRef Name="Id_Critere" />
+          </Key>
+          <Property Name="Id_Critere" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle_CQ" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Machine">
+          <Key>
+            <PropertyRef Name="id_machine" />
+          </Key>
+          <Property Name="id_machine" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_guarantor_maintenance" Type="Int32" />
+          <Property Name="ARCHIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Personne" Relationship="Self.FK__Machine__id_guar__0B91BA14" FromRole="Machine" ToRole="Personne" />
+        </EntityType>
+        <EntityType Name="Personne">
+          <Key>
+            <PropertyRef Name="id_chorus" />
+          </Key>
+          <Property Name="id_chorus" Type="Int32" Nullable="false" />
+          <Property Name="id_isis" Type="String" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Name="last_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="first_name" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="id_department" Type="Int32" />
+          <Property Name="telephone_number" Type="Int32" />
+          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="administrateur" Type="Boolean" Nullable="false" />
+          <Property Name="id_Suppleant" Type="Int32" />
+          <Property Name="IlotID" Type="Int32" />
+          <Property Name="ARCHIVE" Type="Boolean" Nullable="false" />
+          <Property Name="HierarchiqueID" Type="Int32" />
+          <Property Name="DateArchive" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Machines" Relationship="Self.FK__Machine__id_guar__0B91BA14" FromRole="Personne" ToRole="Machine" />
+          <NavigationProperty Name="Personne1" Relationship="Self.FK__Personne__Hierar__0F624AF8" FromRole="Personne" ToRole="Personne1" />
+          <NavigationProperty Name="Personne2" Relationship="Self.FK__Personne__Hierar__0F624AF8" FromRole="Personne1" ToRole="Personne" />
+          <NavigationProperty Name="Personne11" Relationship="Self.FK__Personne__id_Sup__114A936A" FromRole="Personne" ToRole="Personne1" />
+          <NavigationProperty Name="Personne3" Relationship="Self.FK__Personne__id_Sup__114A936A" FromRole="Personne1" ToRole="Personne" />
+          <NavigationProperty Name="SaisiePertes" Relationship="Self.FK__SaisiePer__id_ch__60083D91" FromRole="Personne" ToRole="SaisiePerte" />
+        </EntityType>
+        <EntityType Name="PosteMachine">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="label" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="AtelierId" Type="Int32" />
+          <Property Name="ARCHIVE" Type="Boolean" Nullable="false" />
+          <Property Name="BatimentId" Type="Int32" />
+          <NavigationProperty Name="Atelier" Relationship="Self.FK__PosteMach__Ateli__1332DBDC" FromRole="PosteMachine" ToRole="Atelier" />
+        </EntityType>
+        <EntityType Name="SaisieChuteCoupeuse">
+          <Key>
+            <PropertyRef Name="id_saisie_chute" />
+          </Key>
+          <Property Name="id_saisie_chute" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ident_coupe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nom_coupe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="date_saisie" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="equipe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="num_nk" Type="Int32" Nullable="false" />
+          <Property Name="nom_fournisseur" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="date_fab_nk" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="num_piece" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="tSaisie_CQ_PK" Relationship="Self.FK__tSaisie_C__num_s__44952D46" FromRole="SaisieChuteCoupeuse" ToRole="tSaisie_CQ_PK" />
+          <NavigationProperty Name="tSaisie_CQ_UJO" Relationship="Self.FK__tSaisie_C__num_s__4959E263" FromRole="SaisieChuteCoupeuse" ToRole="tSaisie_CQ_UJO" />
+        </EntityType>
+        <EntityType Name="SaisiePerte">
+          <Key>
+            <PropertyRef Name="id_saisie" />
+          </Key>
+          <Property Name="id_saisie" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_chorus" Type="Int32" Nullable="false" />
+          <Property Name="id_isis" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="AgentGroupe" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="MachineName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_product" Type="Int32" Nullable="false" />
+          <Property Name="bobineNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DateFab" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="bonNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="typeCQ" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TypeProduit" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="TringleNbr" Type="Int32" />
+          <Property Name="TypeRetour" Type="Boolean" Nullable="false" />
+          <Property Name="commentaire" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="date_saisie" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="receptionZE_status" Type="Boolean" Nullable="false" />
+          <Property Name="date_ReceptionZE" Type="DateTime" Precision="3" />
+          <Property Name="expertise_status" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="BonExpertise" Relationship="Self.FK__BonExpert__id_ex__65C116E7" FromRole="SaisiePerte" ToRole="BonExpertise" />
+          <NavigationProperty Name="Personne" Relationship="Self.FK__SaisiePer__id_ch__60083D91" FromRole="SaisiePerte" ToRole="Personne" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="tCQ_PK">
+          <Key>
+            <PropertyRef Name="Id_CQ_PK" />
+          </Key>
+          <Property Name="Id_CQ_PK" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nom_CQ_PK" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Libelle_CQ_PK" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Type_CQ_PK" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tCQ_UJO">
+          <Key>
+            <PropertyRef Name="Id_CQ_UJO" />
+          </Key>
+          <Property Name="Id_CQ_UJO" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Libelle_CQ_UJO" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tFournisseur">
+          <Key>
+            <PropertyRef Name="nom_fournisseur" />
+          </Key>
+          <Property Name="id_fournisseur" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nom_fournisseur" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="libelle_fournisseur" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tNK">
+          <Key>
+            <PropertyRef Name="num_nk" />
+          </Key>
+          <Property Name="num_nk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="libelle_nk" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="tSaisie_CQ_PK">
+          <Key>
+            <PropertyRef Name="id_saisie_pk" />
+          </Key>
+          <Property Name="id_saisie_pk" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="num_saisie_CQ_pk" Type="Int32" Nullable="false" />
+          <Property Name="nom_CQ_pk" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pds_CQ_pk" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="temps" Type="Int32" />
+          <Property Name="type_CQ_pk" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SaisieChuteCoupeuse" Relationship="Self.FK__tSaisie_C__num_s__44952D46" FromRole="tSaisie_CQ_PK" ToRole="SaisieChuteCoupeuse" />
+        </EntityType>
+        <EntityType Name="tSaisie_CQ_UJO">
+          <Key>
+            <PropertyRef Name="id_saisie_ujo" />
+          </Key>
+          <Property Name="id_saisie_ujo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="num_saisie_CQ_ujo" Type="Int32" Nullable="false" />
+          <Property Name="nom_CQ_ujo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pds_CQ_ujo" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <NavigationProperty Name="SaisieChuteCoupeuse" Relationship="Self.FK__tSaisie_C__num_s__4959E263" FromRole="tSaisie_CQ_UJO" ToRole="SaisieChuteCoupeuse" />
+        </EntityType>
+        <Association Name="FK__PosteMach__Ateli__1332DBDC">
+          <End Role="Atelier" Type="Self.Atelier" Multiplicity="0..1" />
+          <End Role="PosteMachine" Type="Self.PosteMachine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Atelier">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="PosteMachine">
+              <PropertyRef Name="AtelierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BonExpert__id_ex__65C116E7">
+          <End Role="SaisiePerte" Type="Self.SaisiePerte" Multiplicity="1" />
+          <End Role="BonExpertise" Type="Self.BonExpertise" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="SaisiePerte">
+              <PropertyRef Name="id_saisie" />
+            </Principal>
+            <Dependent Role="BonExpertise">
+              <PropertyRef Name="id_expertise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Machine__id_guar__0B91BA14">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Machine" Type="Self.Machine" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id_chorus" />
+            </Principal>
+            <Dependent Role="Machine">
+              <PropertyRef Name="id_guarantor_maintenance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Personne__Hierar__0F624AF8">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Personne1" Type="Self.Personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id_chorus" />
+            </Principal>
+            <Dependent Role="Personne1">
+              <PropertyRef Name="HierarchiqueID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Personne__id_Sup__114A936A">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="0..1" />
+          <End Role="Personne1" Type="Self.Personne" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id_chorus" />
+            </Principal>
+            <Dependent Role="Personne1">
+              <PropertyRef Name="id_Suppleant" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__SaisiePer__id_ch__60083D91">
+          <End Role="Personne" Type="Self.Personne" Multiplicity="1" />
+          <End Role="SaisiePerte" Type="Self.SaisiePerte" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Personne">
+              <PropertyRef Name="id_chorus" />
+            </Principal>
+            <Dependent Role="SaisiePerte">
+              <PropertyRef Name="id_chorus" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tSaisie_C__num_s__44952D46">
+          <End Role="SaisieChuteCoupeuse" Type="Self.SaisieChuteCoupeuse" Multiplicity="1" />
+          <End Role="tSaisie_CQ_PK" Type="Self.tSaisie_CQ_PK" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaisieChuteCoupeuse">
+              <PropertyRef Name="id_saisie_chute" />
+            </Principal>
+            <Dependent Role="tSaisie_CQ_PK">
+              <PropertyRef Name="num_saisie_CQ_pk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__tSaisie_C__num_s__4959E263">
+          <End Role="SaisieChuteCoupeuse" Type="Self.SaisieChuteCoupeuse" Multiplicity="1" />
+          <End Role="tSaisie_CQ_UJO" Type="Self.tSaisie_CQ_UJO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaisieChuteCoupeuse">
+              <PropertyRef Name="id_saisie_chute" />
+            </Principal>
+            <Dependent Role="tSaisie_CQ_UJO">
+              <PropertyRef Name="num_saisie_CQ_ujo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BASETESTEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Ateliers" EntityType="Self.Atelier" />
+          <EntitySet Name="BonExpertises" EntityType="Self.BonExpertise" />
+          <EntitySet Name="Critere_CQ" EntityType="Self.Critere_CQ" />
+          <EntitySet Name="Machines" EntityType="Self.Machine" />
+          <EntitySet Name="Personnes" EntityType="Self.Personne" />
+          <EntitySet Name="PosteMachines" EntityType="Self.PosteMachine" />
+          <EntitySet Name="SaisieChuteCoupeuses" EntityType="Self.SaisieChuteCoupeuse" />
+          <EntitySet Name="SaisiePertes" EntityType="Self.SaisiePerte" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="tCQ_PK" EntityType="Self.tCQ_PK" />
+          <EntitySet Name="tCQ_UJO" EntityType="Self.tCQ_UJO" />
+          <EntitySet Name="tFournisseurs" EntityType="Self.tFournisseur" />
+          <EntitySet Name="tNKs" EntityType="Self.tNK" />
+          <EntitySet Name="tSaisie_CQ_PK" EntityType="Self.tSaisie_CQ_PK" />
+          <EntitySet Name="tSaisie_CQ_UJO" EntityType="Self.tSaisie_CQ_UJO" />
+          <AssociationSet Name="FK__PosteMach__Ateli__1332DBDC" Association="Self.FK__PosteMach__Ateli__1332DBDC">
+            <End Role="Atelier" EntitySet="Ateliers" />
+            <End Role="PosteMachine" EntitySet="PosteMachines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BonExpert__id_ex__65C116E7" Association="Self.FK__BonExpert__id_ex__65C116E7">
+            <End Role="SaisiePerte" EntitySet="SaisiePertes" />
+            <End Role="BonExpertise" EntitySet="BonExpertises" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Machine__id_guar__0B91BA14" Association="Self.FK__Machine__id_guar__0B91BA14">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="Machine" EntitySet="Machines" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Personne__Hierar__0F624AF8" Association="Self.FK__Personne__Hierar__0F624AF8">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="Personne1" EntitySet="Personnes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Personne__id_Sup__114A936A" Association="Self.FK__Personne__id_Sup__114A936A">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="Personne1" EntitySet="Personnes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__SaisiePer__id_ch__60083D91" Association="Self.FK__SaisiePer__id_ch__60083D91">
+            <End Role="Personne" EntitySet="Personnes" />
+            <End Role="SaisiePerte" EntitySet="SaisiePertes" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tSaisie_C__num_s__44952D46" Association="Self.FK__tSaisie_C__num_s__44952D46">
+            <End Role="SaisieChuteCoupeuse" EntitySet="SaisieChuteCoupeuses" />
+            <End Role="tSaisie_CQ_PK" EntitySet="tSaisie_CQ_PK" />
+          </AssociationSet>
+          <AssociationSet Name="FK__tSaisie_C__num_s__4959E263" Association="Self.FK__tSaisie_C__num_s__4959E263">
+            <End Role="SaisieChuteCoupeuse" EntitySet="SaisieChuteCoupeuses" />
+            <End Role="tSaisie_CQ_UJO" EntitySet="tSaisie_CQ_UJO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BASETESTModelStoreContainer" CdmEntityContainer="BASETESTEntities">
+          <EntitySetMapping Name="Ateliers">
+            <EntityTypeMapping TypeName="BASETESTModel.Atelier">
+              <MappingFragment StoreEntitySet="Atelier">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="ARCHIVE" ColumnName="ARCHIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BonExpertises">
+            <EntityTypeMapping TypeName="BASETESTModel.BonExpertise">
+              <MappingFragment StoreEntitySet="BonExpertise">
+                <ScalarProperty Name="id_expertise" ColumnName="id_expertise" />
+                <ScalarProperty Name="bonNumber" ColumnName="bonNumber" />
+                <ScalarProperty Name="id_expertizer" ColumnName="id_expertizer" />
+                <ScalarProperty Name="Observation" ColumnName="Observation" />
+                <ScalarProperty Name="CQ_corrige" ColumnName="CQ_corrige" />
+                <ScalarProperty Name="cause" ColumnName="cause" />
+                <ScalarProperty Name="imputation" ColumnName="imputation" />
+                <ScalarProperty Name="ventilation" ColumnName="ventilation" />
+                <ScalarProperty Name="decision" ColumnName="decision" />
+                <ScalarProperty Name="poids_jete" ColumnName="poids_jete" />
+                <ScalarProperty Name="date_expertise" ColumnName="date_expertise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Critere_CQ">
+            <EntityTypeMapping TypeName="BASETESTModel.Critere_CQ">
+              <MappingFragment StoreEntitySet="Critere_CQ">
+                <ScalarProperty Name="Id_Critere" ColumnName="Id_Critere" />
+                <ScalarProperty Name="Libelle_CQ" ColumnName="Libelle_CQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Machines">
+            <EntityTypeMapping TypeName="BASETESTModel.Machine">
+              <MappingFragment StoreEntitySet="Machine">
+                <ScalarProperty Name="id_machine" ColumnName="id_machine" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id_guarantor_maintenance" ColumnName="id_guarantor_maintenance" />
+                <ScalarProperty Name="ARCHIVE" ColumnName="ARCHIVE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Personnes">
+            <EntityTypeMapping TypeName="BASETESTModel.Personne">
+              <MappingFragment StoreEntitySet="Personne">
+                <ScalarProperty Name="id_chorus" ColumnName="id_chorus" />
+                <ScalarProperty Name="id_isis" ColumnName="id_isis" />
+                <ScalarProperty Name="last_name" ColumnName="last_name" />
+                <ScalarProperty Name="first_name" ColumnName="first_name" />
+                <ScalarProperty Name="id_department" ColumnName="id_department" />
+                <ScalarProperty Name="telephone_number" ColumnName="telephone_number" />
+                <ScalarProperty Name="email" ColumnName="email" />
+                <ScalarProperty Name="administrateur" ColumnName="administrateur" />
+                <ScalarProperty Name="id_Suppleant" ColumnName="id_Suppleant" />
+                <ScalarProperty Name="IlotID" ColumnName="IlotID" />
+                <ScalarProperty Name="ARCHIVE" ColumnName="ARCHIVE" />
+                <ScalarProperty Name="HierarchiqueID" ColumnName="HierarchiqueID" />
+                <ScalarProperty Name="DateArchive" ColumnName="DateArchive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PosteMachines">
+            <EntityTypeMapping TypeName="BASETESTModel.PosteMachine">
+              <MappingFragment StoreEntitySet="PosteMachine">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="label" ColumnName="label" />
+                <ScalarProperty Name="AtelierId" ColumnName="AtelierId" />
+                <ScalarProperty Name="ARCHIVE" ColumnName="ARCHIVE" />
+                <ScalarProperty Name="BatimentId" ColumnName="BatimentId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaisieChuteCoupeuses">
+            <EntityTypeMapping TypeName="BASETESTModel.SaisieChuteCoupeuse">
+              <MappingFragment StoreEntitySet="SaisieChuteCoupeuse">
+                <ScalarProperty Name="id_saisie_chute" ColumnName="id_saisie_chute" />
+                <ScalarProperty Name="ident_coupe" ColumnName="ident_coupe" />
+                <ScalarProperty Name="nom_coupe" ColumnName="nom_coupe" />
+                <ScalarProperty Name="date_saisie" ColumnName="date_saisie" />
+                <ScalarProperty Name="equipe" ColumnName="equipe" />
+                <ScalarProperty Name="num_nk" ColumnName="num_nk" />
+                <ScalarProperty Name="nom_fournisseur" ColumnName="nom_fournisseur" />
+                <ScalarProperty Name="date_fab_nk" ColumnName="date_fab_nk" />
+                <ScalarProperty Name="num_piece" ColumnName="num_piece" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaisiePertes">
+            <EntityTypeMapping TypeName="BASETESTModel.SaisiePerte">
+              <MappingFragment StoreEntitySet="SaisiePerte">
+                <ScalarProperty Name="id_saisie" ColumnName="id_saisie" />
+                <ScalarProperty Name="id_chorus" ColumnName="id_chorus" />
+                <ScalarProperty Name="id_isis" ColumnName="id_isis" />
+                <ScalarProperty Name="AgentGroupe" ColumnName="AgentGroupe" />
+                <ScalarProperty Name="MachineName" ColumnName="MachineName" />
+                <ScalarProperty Name="id_product" ColumnName="id_product" />
+                <ScalarProperty Name="bobineNumber" ColumnName="bobineNumber" />
+                <ScalarProperty Name="DateFab" ColumnName="DateFab" />
+                <ScalarProperty Name="bonNumber" ColumnName="bonNumber" />
+                <ScalarProperty Name="typeCQ" ColumnName="typeCQ" />
+                <ScalarProperty Name="TypeProduit" ColumnName="TypeProduit" />
+                <ScalarProperty Name="TringleNbr" ColumnName="TringleNbr" />
+                <ScalarProperty Name="TypeRetour" ColumnName="TypeRetour" />
+                <ScalarProperty Name="commentaire" ColumnName="commentaire" />
+                <ScalarProperty Name="date_saisie" ColumnName="date_saisie" />
+                <ScalarProperty Name="receptionZE_status" ColumnName="receptionZE_status" />
+                <ScalarProperty Name="date_ReceptionZE" ColumnName="date_ReceptionZE" />
+                <ScalarProperty Name="expertise_status" ColumnName="expertise_status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="BASETESTModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCQ_PK">
+            <EntityTypeMapping TypeName="BASETESTModel.tCQ_PK">
+              <MappingFragment StoreEntitySet="tCQ_PK">
+                <ScalarProperty Name="Id_CQ_PK" ColumnName="Id_CQ_PK" />
+                <ScalarProperty Name="Nom_CQ_PK" ColumnName="Nom_CQ_PK" />
+                <ScalarProperty Name="Libelle_CQ_PK" ColumnName="Libelle_CQ_PK" />
+                <ScalarProperty Name="Type_CQ_PK" ColumnName="Type_CQ_PK" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tCQ_UJO">
+            <EntityTypeMapping TypeName="BASETESTModel.tCQ_UJO">
+              <MappingFragment StoreEntitySet="tCQ_UJO">
+                <ScalarProperty Name="Id_CQ_UJO" ColumnName="Id_CQ_UJO" />
+                <ScalarProperty Name="Libelle_CQ_UJO" ColumnName="Libelle_CQ_UJO" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tFournisseurs">
+            <EntityTypeMapping TypeName="BASETESTModel.tFournisseur">
+              <MappingFragment StoreEntitySet="tFournisseur">
+                <ScalarProperty Name="id_fournisseur" ColumnName="id_fournisseur" />
+                <ScalarProperty Name="nom_fournisseur" ColumnName="nom_fournisseur" />
+                <ScalarProperty Name="libelle_fournisseur" ColumnName="libelle_fournisseur" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tNKs">
+            <EntityTypeMapping TypeName="BASETESTModel.tNK">
+              <MappingFragment StoreEntitySet="tNK">
+                <ScalarProperty Name="num_nk" ColumnName="num_nk" />
+                <ScalarProperty Name="libelle_nk" ColumnName="libelle_nk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tSaisie_CQ_PK">
+            <EntityTypeMapping TypeName="BASETESTModel.tSaisie_CQ_PK">
+              <MappingFragment StoreEntitySet="tSaisie_CQ_PK">
+                <ScalarProperty Name="id_saisie_pk" ColumnName="id_saisie_pk" />
+                <ScalarProperty Name="num_saisie_CQ_pk" ColumnName="num_saisie_CQ_pk" />
+                <ScalarProperty Name="nom_CQ_pk" ColumnName="nom_CQ_pk" />
+                <ScalarProperty Name="pds_CQ_pk" ColumnName="pds_CQ_pk" />
+                <ScalarProperty Name="temps" ColumnName="temps" />
+                <ScalarProperty Name="type_CQ_pk" ColumnName="type_CQ_pk" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tSaisie_CQ_UJO">
+            <EntityTypeMapping TypeName="BASETESTModel.tSaisie_CQ_UJO">
+              <MappingFragment StoreEntitySet="tSaisie_CQ_UJO">
+                <ScalarProperty Name="id_saisie_ujo" ColumnName="id_saisie_ujo" />
+                <ScalarProperty Name="num_saisie_CQ_ujo" ColumnName="num_saisie_CQ_ujo" />
+                <ScalarProperty Name="nom_CQ_ujo" ColumnName="nom_CQ_ujo" />
+                <ScalarProperty Name="pds_CQ_ujo" ColumnName="pds_CQ_ujo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

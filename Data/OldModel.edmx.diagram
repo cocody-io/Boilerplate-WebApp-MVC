@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2fba50458f194e3c8faa661c3bf28eb6" Name="Diagram1">
+        <EntityTypeShape EntityType="BASETESTModel.Atelier" Width="1.5" PointX="7.75" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.BonExpertise" Width="1.5" PointX="5.25" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.Critere_CQ" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.Machine" Width="1.5" PointX="3" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.Personne" Width="1.5" PointX="0.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.PosteMachine" Width="1.5" PointX="10" PointY="7.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.SaisieChuteCoupeuse" Width="1.5" PointX="7.75" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.SaisiePerte" Width="1.5" PointX="3" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.sysdiagram" Width="1.5" PointX="2.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.tCQ_PK" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.tCQ_UJO" Width="1.5" PointX="6.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.tFournisseur" Width="1.5" PointX="8.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.tNK" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.tSaisie_CQ_PK" Width="1.5" PointX="10" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="BASETESTModel.tSaisie_CQ_UJO" Width="1.5" PointX="10" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="BASETESTModel.FK__PosteMach__Ateli__1332DBDC" ManuallyRouted="false" />
+        <AssociationConnector Association="BASETESTModel.FK__BonExpert__id_ex__65C116E7" ManuallyRouted="false" />
+        <AssociationConnector Association="BASETESTModel.FK__Machine__id_guar__0B91BA14" ManuallyRouted="false" />
+        <AssociationConnector Association="BASETESTModel.FK__Personne__Hierar__0F624AF8" ManuallyRouted="false" />
+        <AssociationConnector Association="BASETESTModel.FK__Personne__id_Sup__114A936A" ManuallyRouted="false" />
+        <AssociationConnector Association="BASETESTModel.FK__SaisiePer__id_ch__60083D91" ManuallyRouted="false" />
+        <AssociationConnector Association="BASETESTModel.FK__tSaisie_C__num_s__44952D46" ManuallyRouted="false" />
+        <AssociationConnector Association="BASETESTModel.FK__tSaisie_C__num_s__4959E263" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
