@@ -1,0 +1,30 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@model Quality.WebApp.HomeViewModel
+
+<div class="jumbotron">
+    <h2>List of customer</h2>
+    @foreach (var name in Model.NameCustomers)
+    {
+        <p>Customer @name</p>
+    }
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Add customer</h2>
+        @using (Html.BeginForm("CreateCustomer", "Home", FormMethod.Post))
+        {
+            @Html.ValidationSummary(true)
+            <fieldset>
+                Customer name : @Html.TextBoxFor(c=>c.NewCustomerName)
+                <input type="submit" value="Save" />
+            </fieldset>
+        }
+    </div>
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4">
+    </div>
+</div>
