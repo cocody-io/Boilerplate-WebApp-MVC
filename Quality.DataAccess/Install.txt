@@ -1,0 +1,8 @@
+﻿Install : Entity Framework 6 Power Tools Community Edition : https://marketplace.visualstudio.com/items?itemName=ErikEJ.EntityFramework6PowerToolsCommunityEdition
+
+
+export codefirdt : 
+
+Add-Migration First
+
+update-database //-script

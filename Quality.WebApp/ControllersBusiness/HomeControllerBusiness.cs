@@ -1,28 +1,26 @@
 ﻿using Quality.Domain;
 using Quality.Service;
 using Quality.WebApp.Models;
+using System;
 using System.Collections.Generic;
-
+using System.Linq;
 namespace Quality.WebApp
 {
     public class HomeControllerBusiness
     {
 
-        private ICustomerService _customerService;
+        private IAnomalyService _anomalyService;
 
-        public HomeControllerBusiness(ICustomerService customerService )
+        public HomeControllerBusiness(IAnomalyService anomalyService)
         {
-            _customerService = customerService;
+            _anomalyService = anomalyService;
         }
 
         public HomeViewModel GetHomeViewModel()
         {
             HomeViewModel homeViewModel = new HomeViewModel() { NameCustomers = new List<string>() };
-            IEnumerable<CustomerDomain> customers = _customerService.GetAllCustomer();
-            foreach (CustomerDomain c in customers)
-            {
-                homeViewModel.NameCustomers.Add(c.Name);
-            }
+            var res = _anomalyService.GetAllAnomaly();
+            homeViewModel.CreationDate = res.FirstOrDefault().CreationDate;
             return homeViewModel;
         }
 

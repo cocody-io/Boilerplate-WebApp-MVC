@@ -1,0 +1,1100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="QualityModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Anomaly">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="PieceId" Type="int" />
+          <Property Name="ref_ProductionAreaId" Type="int" />
+        </EntityType>
+        <EntityType Name="Expertise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="Commentaire" Type="nvarchar(max)" />
+          <Property Name="CQFixed" Type="nvarchar(max)" />
+          <Property Name="LostWeight" Type="decimal" Precision="18" Scale="0" />
+          <Property Name="ref_CauseZEId" Type="int" Nullable="false" />
+          <Property Name="TicketNC_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="H">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="BarCodeUp" Type="nvarchar(max)" />
+          <Property Name="BarCodeDown" Type="nvarchar(max)" />
+          <Property Name="NkId" Type="int" />
+          <Property Name="NkDate" Type="datetime" />
+          <Property Name="Anomaly_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HCQ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="HId" Type="int" Nullable="false" />
+          <Property Name="Duration" Type="int" />
+          <Property Name="Weight" Type="int" />
+          <Property Name="ref_CQId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NoCo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Expertise_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PAF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Expertise_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Piece">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ref_SupplierId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_CauseZE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="ProductionAreaName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_CQ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="IsSupplierCQ" Type="bit" Nullable="false" />
+          <Property Name="ProductionAreaName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsRyoCQ" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_Machine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" />
+          <Property Name="Code" Type="nvarchar" MaxLength="90" Nullable="false" />
+          <Property Name="ProductionAreaName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_ProductCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_ProductionArea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_TypePiece">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="90" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ref_Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TicketNC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PersonId" Type="int" Nullable="false" />
+          <Property Name="CreationDate" Type="datetime" Nullable="false" />
+          <Property Name="PersonGroupId" Type="int" Nullable="false" />
+          <Property Name="ManufacturedDate" Type="datetime" Nullable="false" />
+          <Property Name="CQId" Type="int" Nullable="false" />
+          <Property Name="Observation" Type="nvarchar(max)" />
+          <Property Name="Quantity" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Order" Type="int" Nullable="false" />
+          <Property Name="ref_TypePieceId" Type="int" Nullable="false" />
+          <Property Name="ref_UnitId" Type="int" Nullable="false" />
+          <Property Name="ref_ProductCodeId" Type="int" Nullable="false" />
+          <Property Name="ref_ProductTypeId" Type="int" Nullable="false" />
+          <Property Name="Anomaly_Id" Type="int" Nullable="false" />
+          <Property Name="Machine_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AnomalyH">
+          <End Role="Anomaly" Type="Self.Anomaly" Multiplicity="1" />
+          <End Role="H" Type="Self.H" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anomaly">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="H">
+              <PropertyRef Name="Anomaly_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyPiece">
+          <End Role="Piece" Type="Self.Piece" Multiplicity="0..1" />
+          <End Role="Anomaly" Type="Self.Anomaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Piece">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Anomaly">
+              <PropertyRef Name="PieceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anomalyref_ProductionArea">
+          <End Role="ref_ProductionArea" Type="Self.ref_ProductionArea" Multiplicity="0..1" />
+          <End Role="Anomaly" Type="Self.Anomaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_ProductionArea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Anomaly">
+              <PropertyRef Name="ref_ProductionAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyTicketNC">
+          <End Role="Anomaly" Type="Self.Anomaly" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anomaly">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="Anomaly_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpertiseNoCo">
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="1" />
+          <End Role="NoCo" Type="Self.NoCo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NoCo">
+              <PropertyRef Name="Expertise_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpertisePAF">
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="1" />
+          <End Role="PAF" Type="Self.PAF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PAF">
+              <PropertyRef Name="Expertise_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expertiseref_CauseZE">
+          <End Role="ref_CauseZE" Type="Self.ref_CauseZE" Multiplicity="1" />
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_CauseZE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expertise">
+              <PropertyRef Name="ref_CauseZEId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HCQref_CQ">
+          <End Role="ref_CQ" Type="Self.ref_CQ" Multiplicity="1" />
+          <End Role="HCQ" Type="Self.HCQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_CQ">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HCQ">
+              <PropertyRef Name="ref_CQId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HHCQ">
+          <End Role="H" Type="Self.H" Multiplicity="1" />
+          <End Role="HCQ" Type="Self.HCQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="H">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HCQ">
+              <PropertyRef Name="HId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pieceref_Supplier">
+          <End Role="ref_Supplier" Type="Self.ref_Supplier" Multiplicity="1" />
+          <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Piece">
+              <PropertyRef Name="ref_SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ref_TypePieceTicketNC">
+          <End Role="ref_TypePiece" Type="Self.ref_TypePiece" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_TypePiece">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="ref_TypePieceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCExpertise">
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="1" />
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketNC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expertise">
+              <PropertyRef Name="TicketNC_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCref_Machine">
+          <End Role="ref_Machine" Type="Self.ref_Machine" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="Machine_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCref_ProductCode">
+          <End Role="ref_ProductCode" Type="Self.ref_ProductCode" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_ProductCode">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="ref_ProductCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCref_ProductType">
+          <End Role="ref_ProductType" Type="Self.ref_ProductType" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="ref_ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCref_Unit">
+          <End Role="ref_Unit" Type="Self.ref_Unit" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_Unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="ref_UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QualityModelStoreContainer">
+          <EntitySet Name="Anomaly" EntityType="Self.Anomaly" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Expertise" EntityType="Self.Expertise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="H" EntityType="Self.H" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HCQ" EntityType="Self.HCQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="NoCo" EntityType="Self.NoCo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PAF" EntityType="Self.PAF" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Piece" EntityType="Self.Piece" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_CauseZE" EntityType="Self.ref_CauseZE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_CQ" EntityType="Self.ref_CQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_Machine" EntityType="Self.ref_Machine" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_ProductCode" EntityType="Self.ref_ProductCode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_ProductionArea" EntityType="Self.ref_ProductionArea" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_ProductType" EntityType="Self.ref_ProductType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_Supplier" EntityType="Self.ref_Supplier" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_TypePiece" EntityType="Self.ref_TypePiece" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ref_Unit" EntityType="Self.ref_Unit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TicketNC" EntityType="Self.TicketNC" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AnomalyH" Association="Self.FK_AnomalyH">
+            <End Role="Anomaly" EntitySet="Anomaly" />
+            <End Role="H" EntitySet="H" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyPiece" Association="Self.FK_AnomalyPiece">
+            <End Role="Piece" EntitySet="Piece" />
+            <End Role="Anomaly" EntitySet="Anomaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anomalyref_ProductionArea" Association="Self.FK_Anomalyref_ProductionArea">
+            <End Role="ref_ProductionArea" EntitySet="ref_ProductionArea" />
+            <End Role="Anomaly" EntitySet="Anomaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyTicketNC" Association="Self.FK_AnomalyTicketNC">
+            <End Role="Anomaly" EntitySet="Anomaly" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpertiseNoCo" Association="Self.FK_ExpertiseNoCo">
+            <End Role="Expertise" EntitySet="Expertise" />
+            <End Role="NoCo" EntitySet="NoCo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpertisePAF" Association="Self.FK_ExpertisePAF">
+            <End Role="Expertise" EntitySet="Expertise" />
+            <End Role="PAF" EntitySet="PAF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expertiseref_CauseZE" Association="Self.FK_Expertiseref_CauseZE">
+            <End Role="ref_CauseZE" EntitySet="ref_CauseZE" />
+            <End Role="Expertise" EntitySet="Expertise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HCQref_CQ" Association="Self.FK_HCQref_CQ">
+            <End Role="ref_CQ" EntitySet="ref_CQ" />
+            <End Role="HCQ" EntitySet="HCQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HHCQ" Association="Self.FK_HHCQ">
+            <End Role="H" EntitySet="H" />
+            <End Role="HCQ" EntitySet="HCQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pieceref_Supplier" Association="Self.FK_Pieceref_Supplier">
+            <End Role="ref_Supplier" EntitySet="ref_Supplier" />
+            <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ref_TypePieceTicketNC" Association="Self.FK_ref_TypePieceTicketNC">
+            <End Role="ref_TypePiece" EntitySet="ref_TypePiece" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCExpertise" Association="Self.FK_TicketNCExpertise">
+            <End Role="TicketNC" EntitySet="TicketNC" />
+            <End Role="Expertise" EntitySet="Expertise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCref_Machine" Association="Self.FK_TicketNCref_Machine">
+            <End Role="ref_Machine" EntitySet="ref_Machine" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCref_ProductCode" Association="Self.FK_TicketNCref_ProductCode">
+            <End Role="ref_ProductCode" EntitySet="ref_ProductCode" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCref_ProductType" Association="Self.FK_TicketNCref_ProductType">
+            <End Role="ref_ProductType" EntitySet="ref_ProductType" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCref_Unit" Association="Self.FK_TicketNCref_Unit">
+            <End Role="ref_Unit" EntitySet="ref_Unit" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="QualityModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Anomaly">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PieceId" Type="Int32" />
+          <Property Name="ref_ProductionAreaId" Type="Int32" />
+          <NavigationProperty Name="H" Relationship="Self.FK_AnomalyH" FromRole="Anomaly" ToRole="H" />
+          <NavigationProperty Name="Piece" Relationship="Self.FK_AnomalyPiece" FromRole="Anomaly" ToRole="Piece" />
+          <NavigationProperty Name="ref_ProductionArea" Relationship="Self.FK_Anomalyref_ProductionArea" FromRole="Anomaly" ToRole="ref_ProductionArea" />
+          <NavigationProperty Name="TicketNC" Relationship="Self.FK_AnomalyTicketNC" FromRole="Anomaly" ToRole="TicketNC" />
+        </EntityType>
+        <EntityType Name="Expertise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Commentaire" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CQFixed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LostWeight" Type="Decimal" Precision="18" Scale="0" />
+          <Property Name="ref_CauseZEId" Type="Int32" Nullable="false" />
+          <Property Name="TicketNC_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="NoCo" Relationship="Self.FK_ExpertiseNoCo" FromRole="Expertise" ToRole="NoCo" />
+          <NavigationProperty Name="PAF" Relationship="Self.FK_ExpertisePAF" FromRole="Expertise" ToRole="PAF" />
+          <NavigationProperty Name="ref_CauseZE" Relationship="Self.FK_Expertiseref_CauseZE" FromRole="Expertise" ToRole="ref_CauseZE" />
+          <NavigationProperty Name="TicketNC" Relationship="Self.FK_TicketNCExpertise" FromRole="Expertise" ToRole="TicketNC" />
+        </EntityType>
+        <EntityType Name="H">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="BarCodeUp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BarCodeDown" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NkId" Type="Int32" />
+          <Property Name="NkDate" Type="DateTime" Precision="3" />
+          <Property Name="Anomaly_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Anomaly" Relationship="Self.FK_AnomalyH" FromRole="H" ToRole="Anomaly" />
+          <NavigationProperty Name="HCQ" Relationship="Self.FK_HHCQ" FromRole="H" ToRole="HCQ" />
+        </EntityType>
+        <EntityType Name="HCQ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="HId" Type="Int32" Nullable="false" />
+          <Property Name="Duration" Type="Int32" />
+          <Property Name="Weight" Type="Int32" />
+          <Property Name="ref_CQId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="H" Relationship="Self.FK_HHCQ" FromRole="HCQ" ToRole="H" />
+          <NavigationProperty Name="ref_CQ" Relationship="Self.FK_HCQref_CQ" FromRole="HCQ" ToRole="ref_CQ" />
+        </EntityType>
+        <EntityType Name="NoCo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Expertise_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expertise" Relationship="Self.FK_ExpertiseNoCo" FromRole="NoCo" ToRole="Expertise" />
+        </EntityType>
+        <EntityType Name="PAF">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Expertise_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Expertise" Relationship="Self.FK_ExpertisePAF" FromRole="PAF" ToRole="Expertise" />
+        </EntityType>
+        <EntityType Name="Piece">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ref_SupplierId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Anomaly" Relationship="Self.FK_AnomalyPiece" FromRole="Piece" ToRole="Anomaly" />
+          <NavigationProperty Name="ref_Supplier" Relationship="Self.FK_Pieceref_Supplier" FromRole="Piece" ToRole="ref_Supplier" />
+        </EntityType>
+        <EntityType Name="ref_CauseZE">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductionAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Expertise" Relationship="Self.FK_Expertiseref_CauseZE" FromRole="ref_CauseZE" ToRole="Expertise" />
+        </EntityType>
+        <EntityType Name="ref_CQ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsSupplierCQ" Type="Boolean" Nullable="false" />
+          <Property Name="ProductionAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IsRyoCQ" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="HCQ" Relationship="Self.FK_HCQref_CQ" FromRole="ref_CQ" ToRole="HCQ" />
+        </EntityType>
+        <EntityType Name="ref_Machine">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ProductionAreaName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TicketNC" Relationship="Self.FK_TicketNCref_Machine" FromRole="ref_Machine" ToRole="TicketNC" />
+        </EntityType>
+        <EntityType Name="ref_ProductCode">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TicketNC" Relationship="Self.FK_TicketNCref_ProductCode" FromRole="ref_ProductCode" ToRole="TicketNC" />
+        </EntityType>
+        <EntityType Name="ref_ProductionArea">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Anomaly" Relationship="Self.FK_Anomalyref_ProductionArea" FromRole="ref_ProductionArea" ToRole="Anomaly" />
+        </EntityType>
+        <EntityType Name="ref_ProductType">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TicketNC" Relationship="Self.FK_TicketNCref_ProductType" FromRole="ref_ProductType" ToRole="TicketNC" />
+        </EntityType>
+        <EntityType Name="ref_Supplier">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Piece" Relationship="Self.FK_Pieceref_Supplier" FromRole="ref_Supplier" ToRole="Piece" />
+        </EntityType>
+        <EntityType Name="ref_TypePiece">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="90" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TicketNC" Relationship="Self.FK_ref_TypePieceTicketNC" FromRole="ref_TypePiece" ToRole="TicketNC" />
+        </EntityType>
+        <EntityType Name="ref_Unit">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="TicketNC" Relationship="Self.FK_TicketNCref_Unit" FromRole="ref_Unit" ToRole="TicketNC" />
+        </EntityType>
+        <EntityType Name="TicketNC">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PersonId" Type="Int32" Nullable="false" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PersonGroupId" Type="Int32" Nullable="false" />
+          <Property Name="ManufacturedDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CQId" Type="Int32" Nullable="false" />
+          <Property Name="Observation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Quantity" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="Order" Type="Int32" Nullable="false" />
+          <Property Name="ref_TypePieceId" Type="Int32" Nullable="false" />
+          <Property Name="ref_UnitId" Type="Int32" Nullable="false" />
+          <Property Name="ref_ProductCodeId" Type="Int32" Nullable="false" />
+          <Property Name="ref_ProductTypeId" Type="Int32" Nullable="false" />
+          <Property Name="Anomaly_Id" Type="Int32" Nullable="false" />
+          <Property Name="Machine_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Anomaly" Relationship="Self.FK_AnomalyTicketNC" FromRole="TicketNC" ToRole="Anomaly" />
+          <NavigationProperty Name="Expertise" Relationship="Self.FK_TicketNCExpertise" FromRole="TicketNC" ToRole="Expertise" />
+          <NavigationProperty Name="ref_Machine" Relationship="Self.FK_TicketNCref_Machine" FromRole="TicketNC" ToRole="ref_Machine" />
+          <NavigationProperty Name="ref_ProductCode" Relationship="Self.FK_TicketNCref_ProductCode" FromRole="TicketNC" ToRole="ref_ProductCode" />
+          <NavigationProperty Name="ref_ProductType" Relationship="Self.FK_TicketNCref_ProductType" FromRole="TicketNC" ToRole="ref_ProductType" />
+          <NavigationProperty Name="ref_TypePiece" Relationship="Self.FK_ref_TypePieceTicketNC" FromRole="TicketNC" ToRole="ref_TypePiece" />
+          <NavigationProperty Name="ref_Unit" Relationship="Self.FK_TicketNCref_Unit" FromRole="TicketNC" ToRole="ref_Unit" />
+        </EntityType>
+        <Association Name="FK_AnomalyH">
+          <End Role="Anomaly" Type="Self.Anomaly" Multiplicity="1" />
+          <End Role="H" Type="Self.H" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anomaly">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="H">
+              <PropertyRef Name="Anomaly_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyPiece">
+          <End Role="Piece" Type="Self.Piece" Multiplicity="0..1" />
+          <End Role="Anomaly" Type="Self.Anomaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Piece">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Anomaly">
+              <PropertyRef Name="PieceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Anomalyref_ProductionArea">
+          <End Role="ref_ProductionArea" Type="Self.ref_ProductionArea" Multiplicity="0..1" />
+          <End Role="Anomaly" Type="Self.Anomaly" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_ProductionArea">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Anomaly">
+              <PropertyRef Name="ref_ProductionAreaId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_AnomalyTicketNC">
+          <End Role="Anomaly" Type="Self.Anomaly" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Anomaly">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="Anomaly_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpertiseNoCo">
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="1" />
+          <End Role="NoCo" Type="Self.NoCo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="NoCo">
+              <PropertyRef Name="Expertise_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ExpertisePAF">
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="1" />
+          <End Role="PAF" Type="Self.PAF" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Expertise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="PAF">
+              <PropertyRef Name="Expertise_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Expertiseref_CauseZE">
+          <End Role="ref_CauseZE" Type="Self.ref_CauseZE" Multiplicity="1" />
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_CauseZE">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expertise">
+              <PropertyRef Name="ref_CauseZEId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCExpertise">
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="1" />
+          <End Role="Expertise" Type="Self.Expertise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TicketNC">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Expertise">
+              <PropertyRef Name="TicketNC_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HHCQ">
+          <End Role="H" Type="Self.H" Multiplicity="1" />
+          <End Role="HCQ" Type="Self.HCQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="H">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HCQ">
+              <PropertyRef Name="HId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_HCQref_CQ">
+          <End Role="ref_CQ" Type="Self.ref_CQ" Multiplicity="1" />
+          <End Role="HCQ" Type="Self.HCQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_CQ">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HCQ">
+              <PropertyRef Name="ref_CQId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pieceref_Supplier">
+          <End Role="ref_Supplier" Type="Self.ref_Supplier" Multiplicity="1" />
+          <End Role="Piece" Type="Self.Piece" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_Supplier">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Piece">
+              <PropertyRef Name="ref_SupplierId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCref_Machine">
+          <End Role="ref_Machine" Type="Self.ref_Machine" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_Machine">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="Machine_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCref_ProductCode">
+          <End Role="ref_ProductCode" Type="Self.ref_ProductCode" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_ProductCode">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="ref_ProductCodeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCref_ProductType">
+          <End Role="ref_ProductType" Type="Self.ref_ProductType" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_ProductType">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="ref_ProductTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ref_TypePieceTicketNC">
+          <End Role="ref_TypePiece" Type="Self.ref_TypePiece" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_TypePiece">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="ref_TypePieceId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TicketNCref_Unit">
+          <End Role="ref_Unit" Type="Self.ref_Unit" Multiplicity="1" />
+          <End Role="TicketNC" Type="Self.TicketNC" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ref_Unit">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="TicketNC">
+              <PropertyRef Name="ref_UnitId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="QualityEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Anomaly" EntityType="Self.Anomaly" />
+          <EntitySet Name="Expertise" EntityType="Self.Expertise" />
+          <EntitySet Name="H" EntityType="Self.H" />
+          <EntitySet Name="HCQ" EntityType="Self.HCQ" />
+          <EntitySet Name="NoCo" EntityType="Self.NoCo" />
+          <EntitySet Name="PAF" EntityType="Self.PAF" />
+          <EntitySet Name="Piece" EntityType="Self.Piece" />
+          <EntitySet Name="ref_CauseZE" EntityType="Self.ref_CauseZE" />
+          <EntitySet Name="ref_CQ" EntityType="Self.ref_CQ" />
+          <EntitySet Name="ref_Machine" EntityType="Self.ref_Machine" />
+          <EntitySet Name="ref_ProductCode" EntityType="Self.ref_ProductCode" />
+          <EntitySet Name="ref_ProductionArea" EntityType="Self.ref_ProductionArea" />
+          <EntitySet Name="ref_ProductType" EntityType="Self.ref_ProductType" />
+          <EntitySet Name="ref_Supplier" EntityType="Self.ref_Supplier" />
+          <EntitySet Name="ref_TypePiece" EntityType="Self.ref_TypePiece" />
+          <EntitySet Name="ref_Unit" EntityType="Self.ref_Unit" />
+          <EntitySet Name="TicketNC" EntityType="Self.TicketNC" />
+          <AssociationSet Name="FK_AnomalyH" Association="Self.FK_AnomalyH">
+            <End Role="Anomaly" EntitySet="Anomaly" />
+            <End Role="H" EntitySet="H" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyPiece" Association="Self.FK_AnomalyPiece">
+            <End Role="Piece" EntitySet="Piece" />
+            <End Role="Anomaly" EntitySet="Anomaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Anomalyref_ProductionArea" Association="Self.FK_Anomalyref_ProductionArea">
+            <End Role="ref_ProductionArea" EntitySet="ref_ProductionArea" />
+            <End Role="Anomaly" EntitySet="Anomaly" />
+          </AssociationSet>
+          <AssociationSet Name="FK_AnomalyTicketNC" Association="Self.FK_AnomalyTicketNC">
+            <End Role="Anomaly" EntitySet="Anomaly" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpertiseNoCo" Association="Self.FK_ExpertiseNoCo">
+            <End Role="Expertise" EntitySet="Expertise" />
+            <End Role="NoCo" EntitySet="NoCo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ExpertisePAF" Association="Self.FK_ExpertisePAF">
+            <End Role="Expertise" EntitySet="Expertise" />
+            <End Role="PAF" EntitySet="PAF" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Expertiseref_CauseZE" Association="Self.FK_Expertiseref_CauseZE">
+            <End Role="ref_CauseZE" EntitySet="ref_CauseZE" />
+            <End Role="Expertise" EntitySet="Expertise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCExpertise" Association="Self.FK_TicketNCExpertise">
+            <End Role="TicketNC" EntitySet="TicketNC" />
+            <End Role="Expertise" EntitySet="Expertise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HHCQ" Association="Self.FK_HHCQ">
+            <End Role="H" EntitySet="H" />
+            <End Role="HCQ" EntitySet="HCQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_HCQref_CQ" Association="Self.FK_HCQref_CQ">
+            <End Role="ref_CQ" EntitySet="ref_CQ" />
+            <End Role="HCQ" EntitySet="HCQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pieceref_Supplier" Association="Self.FK_Pieceref_Supplier">
+            <End Role="ref_Supplier" EntitySet="ref_Supplier" />
+            <End Role="Piece" EntitySet="Piece" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCref_Machine" Association="Self.FK_TicketNCref_Machine">
+            <End Role="ref_Machine" EntitySet="ref_Machine" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCref_ProductCode" Association="Self.FK_TicketNCref_ProductCode">
+            <End Role="ref_ProductCode" EntitySet="ref_ProductCode" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCref_ProductType" Association="Self.FK_TicketNCref_ProductType">
+            <End Role="ref_ProductType" EntitySet="ref_ProductType" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ref_TypePieceTicketNC" Association="Self.FK_ref_TypePieceTicketNC">
+            <End Role="ref_TypePiece" EntitySet="ref_TypePiece" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TicketNCref_Unit" Association="Self.FK_TicketNCref_Unit">
+            <End Role="ref_Unit" EntitySet="ref_Unit" />
+            <End Role="TicketNC" EntitySet="TicketNC" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="QualityModelStoreContainer" CdmEntityContainer="QualityEntities">
+          <EntitySetMapping Name="Anomaly">
+            <EntityTypeMapping TypeName="QualityModel.Anomaly">
+              <MappingFragment StoreEntitySet="Anomaly">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="PieceId" ColumnName="PieceId" />
+                <ScalarProperty Name="ref_ProductionAreaId" ColumnName="ref_ProductionAreaId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Expertise">
+            <EntityTypeMapping TypeName="QualityModel.Expertise">
+              <MappingFragment StoreEntitySet="Expertise">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="Commentaire" ColumnName="Commentaire" />
+                <ScalarProperty Name="CQFixed" ColumnName="CQFixed" />
+                <ScalarProperty Name="LostWeight" ColumnName="LostWeight" />
+                <ScalarProperty Name="ref_CauseZEId" ColumnName="ref_CauseZEId" />
+                <ScalarProperty Name="TicketNC_Id" ColumnName="TicketNC_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="H">
+            <EntityTypeMapping TypeName="QualityModel.H">
+              <MappingFragment StoreEntitySet="H">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="BarCodeUp" ColumnName="BarCodeUp" />
+                <ScalarProperty Name="BarCodeDown" ColumnName="BarCodeDown" />
+                <ScalarProperty Name="NkId" ColumnName="NkId" />
+                <ScalarProperty Name="NkDate" ColumnName="NkDate" />
+                <ScalarProperty Name="Anomaly_Id" ColumnName="Anomaly_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HCQ">
+            <EntityTypeMapping TypeName="QualityModel.HCQ">
+              <MappingFragment StoreEntitySet="HCQ">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="HId" ColumnName="HId" />
+                <ScalarProperty Name="Duration" ColumnName="Duration" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="ref_CQId" ColumnName="ref_CQId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NoCo">
+            <EntityTypeMapping TypeName="QualityModel.NoCo">
+              <MappingFragment StoreEntitySet="NoCo">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Expertise_Id" ColumnName="Expertise_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PAF">
+            <EntityTypeMapping TypeName="QualityModel.PAF">
+              <MappingFragment StoreEntitySet="PAF">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Expertise_Id" ColumnName="Expertise_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Piece">
+            <EntityTypeMapping TypeName="QualityModel.Piece">
+              <MappingFragment StoreEntitySet="Piece">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="ref_SupplierId" ColumnName="ref_SupplierId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_CauseZE">
+            <EntityTypeMapping TypeName="QualityModel.ref_CauseZE">
+              <MappingFragment StoreEntitySet="ref_CauseZE">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ProductionAreaName" ColumnName="ProductionAreaName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_CQ">
+            <EntityTypeMapping TypeName="QualityModel.ref_CQ">
+              <MappingFragment StoreEntitySet="ref_CQ">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="IsSupplierCQ" ColumnName="IsSupplierCQ" />
+                <ScalarProperty Name="ProductionAreaName" ColumnName="ProductionAreaName" />
+                <ScalarProperty Name="IsRyoCQ" ColumnName="IsRyoCQ" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_Machine">
+            <EntityTypeMapping TypeName="QualityModel.ref_Machine">
+              <MappingFragment StoreEntitySet="ref_Machine">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="ProductionAreaName" ColumnName="ProductionAreaName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_ProductCode">
+            <EntityTypeMapping TypeName="QualityModel.ref_ProductCode">
+              <MappingFragment StoreEntitySet="ref_ProductCode">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_ProductionArea">
+            <EntityTypeMapping TypeName="QualityModel.ref_ProductionArea">
+              <MappingFragment StoreEntitySet="ref_ProductionArea">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_ProductType">
+            <EntityTypeMapping TypeName="QualityModel.ref_ProductType">
+              <MappingFragment StoreEntitySet="ref_ProductType">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_Supplier">
+            <EntityTypeMapping TypeName="QualityModel.ref_Supplier">
+              <MappingFragment StoreEntitySet="ref_Supplier">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_TypePiece">
+            <EntityTypeMapping TypeName="QualityModel.ref_TypePiece">
+              <MappingFragment StoreEntitySet="ref_TypePiece">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ref_Unit">
+            <EntityTypeMapping TypeName="QualityModel.ref_Unit">
+              <MappingFragment StoreEntitySet="ref_Unit">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketNC">
+            <EntityTypeMapping TypeName="QualityModel.TicketNC">
+              <MappingFragment StoreEntitySet="TicketNC">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="PersonId" ColumnName="PersonId" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="PersonGroupId" ColumnName="PersonGroupId" />
+                <ScalarProperty Name="ManufacturedDate" ColumnName="ManufacturedDate" />
+                <ScalarProperty Name="CQId" ColumnName="CQId" />
+                <ScalarProperty Name="Observation" ColumnName="Observation" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Order" ColumnName="Order" />
+                <ScalarProperty Name="ref_TypePieceId" ColumnName="ref_TypePieceId" />
+                <ScalarProperty Name="ref_UnitId" ColumnName="ref_UnitId" />
+                <ScalarProperty Name="ref_ProductCodeId" ColumnName="ref_ProductCodeId" />
+                <ScalarProperty Name="ref_ProductTypeId" ColumnName="ref_ProductTypeId" />
+                <ScalarProperty Name="Anomaly_Id" ColumnName="Anomaly_Id" />
+                <ScalarProperty Name="Machine_Id" ColumnName="Machine_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

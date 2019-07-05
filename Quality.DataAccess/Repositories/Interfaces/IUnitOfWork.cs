@@ -8,7 +8,7 @@ namespace Quality.DataAccess.Repositories.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
-        ICustomerRepository Customers { get; }
+        IAnomalyRepository AnomalyRepository { get; }
 
         int Complete();
     }

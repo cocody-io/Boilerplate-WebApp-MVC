@@ -52,7 +52,7 @@ namespace Quality.WebApp
             container.RegisterType<CacheManager>(new InjectionProperty("CacheDuration", TimeSpan.FromHours(Convert.ToInt32(ConfigurationManager.AppSettings["CacheDuration"]))));
 
 
-            container.RegisterType<ICustomerService, CustomerService>();
+            container.RegisterType<IAnomalyService, AnomalyService>();
 
             container.RegisterType<ILoggingService, Log4NetLoggingService>();
             container.RegisterType<IContextService, HttpContextService>();

@@ -11,14 +11,13 @@ namespace Quality.DataAccess.Repositories
     {
         private readonly QualityContext _context;
 
-        public ICustomerRepository Customers { get; }
+        public IAnomalyRepository AnomalyRepository { get; }
 
         public UnitOfWork(QualityContext context)
         {
             _context = context;
-            Customers = new CustomerRepository(_context);
+            AnomalyRepository = new AnomalyRepository(_context);
         }
-
 
         public int Complete()
         {

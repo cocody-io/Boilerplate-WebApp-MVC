@@ -1,0 +1,8 @@
+﻿Chaîne de connexion ajoutée au fichier App.Config.
+Fichier de modèle généré : Database.edmx.
+Le chargement des métadonnées à partir de la base de données a pris 00:00:01.0822040.
+La génération du modèle a pris 00:00:02.1547946.
+Fichier de modèle généré : CustomerDataModel.edmx.
+Le chargement des métadonnées à partir de la base de données a pris 00:00:00.7334944.
+La génération du modèle a pris 00:00:00.5102946.
+Chaîne de connexion ajoutée au fichier App.Config.

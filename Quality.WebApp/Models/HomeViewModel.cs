@@ -10,5 +10,7 @@ namespace Quality.WebApp
         public List<string> NameCustomers { get; set; }
 
         public string NewCustomerName { get; set; }
+
+        public DateTime CreationDate { get; set; }
     }
 }

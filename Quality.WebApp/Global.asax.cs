@@ -17,6 +17,7 @@ namespace Quality.WebApp
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperConfig.Init();
 
             Log4NetLoggingService logger = (Log4NetLoggingService)DependencyResolver.Current.GetService(typeof(ILoggingService));
             logger.LogInfo(this, "Application start");

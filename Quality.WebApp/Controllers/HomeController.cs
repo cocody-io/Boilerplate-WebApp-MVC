@@ -5,13 +5,13 @@ namespace Quality.WebApp.Controllers
 {
     public class HomeController : Controller
     {
-        private ICustomerService _customerService;
+        private IAnomalyService _anomalyService;
         private HomeControllerBusiness _homeControllerBusiness;
 
-        public HomeController(ICustomerService customerService)
+        public HomeController(IAnomalyService anomalyService)
         {
-            _customerService = customerService;
-            _homeControllerBusiness = new HomeControllerBusiness(_customerService);
+            _anomalyService = anomalyService;
+            _homeControllerBusiness = new HomeControllerBusiness(_anomalyService);
         }
 
         /// <summary>
@@ -30,14 +30,14 @@ namespace Quality.WebApp.Controllers
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
-        [HttpPost]
-        public ActionResult CreateCustomer(HomeViewModel model)
-        {
-            _customerService.CreateCustomer(model?.NewCustomerName);
-            HomeViewModel homeViewModel = _homeControllerBusiness.GetHomeViewModel();
+        //[HttpPost]
+        //public ActionResult CreateCustomer(HomeViewModel model)
+        //{
+        //    _customerService.CreateCustomer(model?.NewCustomerName);
+        //    HomeViewModel homeViewModel = _homeControllerBusiness.GetHomeViewModel();
 
-            return RedirectToAction("Index", homeViewModel);
-        }
+        //    return RedirectToAction("Index", homeViewModel);
+        //}
 
         public ActionResult About()
         {
