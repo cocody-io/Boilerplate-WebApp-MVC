@@ -43,6 +43,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="RefTablesService.cs" />
+    <Compile Include="Interfaces\IRefTablesService.cs" />
     <Compile Include="AnomalyService.cs" />
     <Compile Include="Interfaces\IAnomalyService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

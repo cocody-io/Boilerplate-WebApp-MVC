@@ -14,5 +14,10 @@ namespace Quality.DataAccess
         public string Name { get; set; }
 
         public virtual ICollection<Expertise> ExpertiseCollection { get; set; }
+
+        [Required]
+        [StringLength(50, MinimumLength = 1)]
+        [Index(IsUnique = false, IsClustered = false)]
+        public string ProductionAreaName { get; set; }
     }
 }

@@ -1,0 +1,49 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index PM</h2>
+
+
+<div class="row">
+    <div class="col-12 col-md-6 col-lg-4 btn-group-vertical wrapperMenuPm">
+        @Html.ActionLink("Encodage Bon NC", "TicketNC", "PM", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("CQ avec imputation fournisseur", "H", "PM", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Réception ZE", "TicketNC", "ExpertReception", null, new { @class = "btn btn-primary" })
+        @Html.ActionLink("Expertise ZE", "TicketNC", "ExpertiseAnalyse", null, new { @class = "btn btn-primary" })
+
+        @*<input type="button" class="btn btn-primary w-100 mw-100" value="Encodage Bon NC" onclick="RedirectSaisie()" />*@
+        @*<input type="button" class="btn btn-primary w-100 mw-100 mt-1" value="CQ avec imputation fournisseur" onclick="RedirectHSansExpertise()" />*@
+        @*<input type="button" class="btn btn-primary w-100 mw-100 mt-1" value="Réception ZE" onclick="RedirectReceptionZE()" />*@
+        @*<input type="button" class="btn btn-primary w-100 mw-100 mt-1" value="Expertise ZE" onclick="RedirectExpertiseZE()" />*@
+    </div>
+    <div class="col-12 col-md-6 col-lg-8">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th scope="col">Bon NC</th>
+                    <th scope="col">Date d'encodage</th>
+                    <th scope="col">Code produit</th>
+                    <th scope="col">N° Bobine</th>
+                    <th scope="col">Nbr</th>
+                </tr>
+            </thead>
+            <tbody>
+                @*@{var list = (ICollection<RyoApp.Models.SaisiePerte>)ViewBag.PertesList;
+                    foreach (var saisie in list)
+                    {
+                        <tr>
+                            <td>@saisie.bonNumber</td>
+                            <td>@saisie.date_saisie</td>
+                            <td>@saisie.id_product</td>
+                            <td>@saisie.bobineNumber</td>
+                            <td>@saisie.TringleNbr</td>
+                        </tr>
+                    }
+                }*@
+            </tbody>
+        </table>
+    </div>
+</div>

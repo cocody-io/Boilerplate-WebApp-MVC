@@ -38,7 +38,7 @@ namespace Quality.DataAccess
         public DbSet<ref_ProductType> ref_ProductTypeCollection { get; set; }
         public DbSet<ref_Unit> ref_UnitCollection { get; set; }
         public DbSet<ref_Ventilation> ref_VentilationCollection { get; set; }
-        public DbSet<Supplier> SupplierCollection { get; set; }
+        public DbSet<ref_Supplier> SupplierCollection { get; set; }
         public DbSet<TicketNC> TicketNCCollection { get; set; }
     }
 }

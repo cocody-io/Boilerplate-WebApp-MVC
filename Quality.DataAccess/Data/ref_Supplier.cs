@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 
 namespace Quality.DataAccess
 {
-    [Table("Supplier")]
-    public class Supplier
+    [Table("ref_Supplier")]
+    public class ref_Supplier
     {
-        public int SupplierId { get; set; }
+        public int ref_SupplierId { get; set; }
         [StringLength(250, MinimumLength = 1)]
         public string Name { get; set; }
 

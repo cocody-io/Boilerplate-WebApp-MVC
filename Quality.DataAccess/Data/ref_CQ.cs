@@ -14,16 +14,18 @@ namespace Quality.DataAccess
 
         [Required]
         [StringLength(50, MinimumLength = 1)]
-        [Index(IsUnique = true, IsClustered = false)]
+        [Index(IsUnique = false, IsClustered = false)]
         public string ProductionAreaName { get; set; }
 
-        public bool IsSupplierCQ { get; set; } 
-        public bool IsRyoCQ { get; set; }
+        public bool? IsSupplierCQ { get; set; } 
+        public bool? IsRyoCQ { get; set; }
 
         public virtual ICollection<HCQ> HCQCollection { get; set; }
 
         public virtual ICollection<TicketNC> TicketNCCollection { get; set; }
 
         public virtual ICollection<Expertise> ExpertiseCollection { get; set; }
+
+        public int? Code { get; set; }
     }
 }

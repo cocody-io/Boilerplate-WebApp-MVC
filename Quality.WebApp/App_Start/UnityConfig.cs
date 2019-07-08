@@ -53,6 +53,8 @@ namespace Quality.WebApp
 
 
             container.RegisterType<IAnomalyService, AnomalyService>();
+            container.RegisterType<IRefTablesService, RefTablesService>();
+            
 
             container.RegisterType<ILoggingService, Log4NetLoggingService>();
             container.RegisterType<IContextService, HttpContextService>();

@@ -63,7 +63,7 @@
     <Compile Include="Data\ref_Machine.cs" />
     <Compile Include="Data\Expertise.cs" />
     <Compile Include="Data\TicketNC.cs" />
-    <Compile Include="Data\Supplier.cs" />
+    <Compile Include="Data\ref_Supplier.cs" />
     <Compile Include="Data\Piece.cs" />
     <Compile Include="Data\HCQ.cs" />
     <Compile Include="Data\H.cs" />
@@ -71,13 +71,45 @@
     <Compile Include="Data\QualityContext.cs" />
     <Compile Include="Data\ref_CQ.cs" />
     <Compile Include="Data\ref_ProductionArea.cs" />
-    <Compile Include="Migrations\201907051603082_Init.cs" />
-    <Compile Include="Migrations\201907051603082_Init.Designer.cs">
-      <DependentUpon>201907051603082_Init.cs</DependentUpon>
+    <Compile Include="Migrations\201907080612496_Init.cs" />
+    <Compile Include="Migrations\201907080612496_Init.Designer.cs">
+      <DependentUpon>201907080612496_Init.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907080619056_cq.cs" />
+    <Compile Include="Migrations\201907080619056_cq.Designer.cs">
+      <DependentUpon>201907080619056_cq.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907080621481_cqb.cs" />
+    <Compile Include="Migrations\201907080621481_cqb.Designer.cs">
+      <DependentUpon>201907080621481_cqb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907080652030_imputation.cs" />
+    <Compile Include="Migrations\201907080652030_imputation.Designer.cs">
+      <DependentUpon>201907080652030_imputation.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907080732429_imputation1.cs" />
+    <Compile Include="Migrations\201907080732429_imputation1.Designer.cs">
+      <DependentUpon>201907080732429_imputation1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201907080742507_supplier.cs" />
+    <Compile Include="Migrations\201907080742507_supplier.Designer.cs">
+      <DependentUpon>201907080742507_supplier.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\Interfaces\ICQRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IPieceTypeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProductCodeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUnitRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IProductTypeRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IMachineRepository.cs" />
     <Compile Include="Repositories\Interfaces\IAnomalyRepository.cs" />
+    <Compile Include="Repositories\ProductCodeRepository.cs" />
+    <Compile Include="Repositories\PieceTypeRepository.cs" />
+    <Compile Include="Repositories\UnitRepository.cs" />
+    <Compile Include="Repositories\ProductTypeRepository.cs" />
+    <Compile Include="Repositories\MachineRepository.cs" />
+    <Compile Include="Repositories\CQRepository.cs" />
     <Compile Include="Repositories\QualityRepository.cs" />
     <Compile Include="Repositories\Interfaces\IRepository.cs" />
     <Compile Include="Repositories\Interfaces\IUnitOfWork.cs" />
@@ -91,14 +123,29 @@
   <ItemGroup>
     <Content Include="DatabaseQuality.edmx.sql" />
     <Content Include="Install.txt" />
-    <Content Include="ScriptSQL\script.sql" />
+    <Content Include="ScriptSQL\insert_data_ref_table.sql" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907051603082_Init.resx">
-      <DependentUpon>201907051603082_Init.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907080612496_Init.resx">
+      <DependentUpon>201907080612496_Init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907080619056_cq.resx">
+      <DependentUpon>201907080619056_cq.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907080621481_cqb.resx">
+      <DependentUpon>201907080621481_cqb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907080652030_imputation.resx">
+      <DependentUpon>201907080652030_imputation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907080732429_imputation1.resx">
+      <DependentUpon>201907080732429_imputation1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201907080742507_supplier.resx">
+      <DependentUpon>201907080742507_supplier.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -41,7 +41,7 @@ namespace Quality.DataAccess
 
         public int ref_CQId { get; set; }
         [ForeignKey("ref_CQId")]
-        public virtual ref_CQ ref_CQ { get; set; }
+        public virtual ref_CQ Ref_CQ { get; set; }
 
     }
 }

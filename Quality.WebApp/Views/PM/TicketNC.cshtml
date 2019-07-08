@@ -1,0 +1,146 @@
+﻿@model Quality.WebApp.TicketNCViewModel
+
+
+<form class="form-edit">
+    <h3 class="title-form">Bon de non conformité</h3><hr />
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.CreationDate)" class="col-sm-3 col-form-label">Date et heure de refus</label>
+                <div class="col-sm-9">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="@Html.IdFor(m=>m.CreationDate)" name="@Html.NameFor(m=>m.CreationDate)">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.MachineId)" class="col-sm-3 col-form-label">Machine</label>
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(m => m.MachineId, Model.MachineCollection, "", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.PersonId)" class="col-sm-3 col-form-label">Identifiant</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.PersonId, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.GroupId)" class="col-sm-3 col-form-label">Groupe</label>
+                <div class="col-sm-9">
+                    @Html.TextBoxFor(m => m.GroupId, new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.ProductTypeId)" class="col-sm-3 col-form-label">Type Produit</label>
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(m => m.ProductTypeId, Model.ProductTypeCollection, "", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.ProductCodeId)" class="col-sm-3 col-form-label">Code Produit</label>
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(m => m.ProductCodeId, Model.ProductCodeCollection, "", new { @class = "form-control" })
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.ManufacturedDate)" class="col-sm-3 col-form-label">Date de fabrication</label>
+                <div class="col-sm-9">
+                    <div class="input-group date">
+                        <input type="text" class="form-control" id="@Html.IdFor(m=>m.ManufacturedDate)" name="@Html.NameFor(m=>m.ManufacturedDate)">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.CQId)" class="col-sm-3 col-form-label">Critère CQ</label>
+                <div class="col-sm-9">
+                    @Html.DropDownListFor(m => m.CQId, Model.CQCollection, "", new { @class = "form-control" })
+                </div>
+            </div>
+
+
+            <fieldset class="form-group">
+                <div class="row">
+                    <legend class="col-form-label col-sm-3 pt-0">Type pièce</legend>
+                    <div class="col-sm-9">
+                        @for (int i = 0; i < Model.PieceTypeCollection.Count; i++)
+                        {
+                            <div class="form-check">
+                                @Html.RadioButtonFor(m => m.ProductTypeId, Model.PieceTypeCollection[i].Value, new { id = "PieceTypeId" + i.ToString() })
+
+                                <label class="form-check-label" for="@("PieceTypeId"+i.ToString())">
+                                    @Model.PieceTypeCollection[i].Text
+                                </label>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </fieldset>
+
+            <div class="form-group row">
+                <label for="@Html.IdFor(m=>m.Observation)" class="col-sm-3 col-form-label">Observation</label>
+                <div class="col-sm-9">
+                    @Html.TextAreaFor(m => m.Observation, new { @class = "form-control" })
+                </div>
+            </div>
+
+
+            @*<div class="form-group row">
+                <div class="col-sm-2">Checkbox</div>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="gridCheck1">
+                        <label class="form-check-label" for="gridCheck1">
+                            Example checkbox
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-10">
+                    <button type="submit" class="btn btn-primary">Sign in</button>
+                </div>
+            </div>*@
+
+        </div>
+        <div class="col-md-6">
+            <div class="form-group row spacerQuantity">
+                <label for="@Html.IdFor(m=>m.Quantity)" class="col-sm-2 col-form-label">Quantité</label>
+                <div class="col-sm-10">
+                    <div class="row">
+                        <div class="col-sm-4">@Html.TextBoxFor(m => m.Quantity, new { @class = "form-control quantity-tb" })</div>
+                        <div class="col-sm-8">@Html.DropDownListFor(m => m.UnitId, Model.UnitCollection, "", new { @class = "form-control quantity-tb" })</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group row ">
+                <label for="@Html.IdFor(m=>m.Order)" class="col-sm-2 col-form-label">Ordre</label>
+                <div class="col-sm-10">
+                    @Html.TextBoxFor(m => m.Order, new { @class = "form-control" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</form>
+
+@section scripts {
+    <script>
+        $('#inputDateId').datepicker({
+            language: "fr",
+            setDate: new Date(),
+            "autoclose": true});
+    </script>
+}
+

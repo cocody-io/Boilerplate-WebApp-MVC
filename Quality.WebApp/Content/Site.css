@@ -1,7 +1,4 @@
-﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
+﻿
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
@@ -22,3 +19,81 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.blue {
+    background-color: #0061a9;
+}
+
+.navbar-brand, navbar-brand:hover {
+    color: white!important;
+}
+.link-submenu {
+    color: white !important;
+}
+
+.lineBtnHome {
+    margin-left: auto;
+    margin-right: auto;
+    width: 578px;
+    margin-top: 40vh; /* poussé de la moitié de hauteur de viewport */
+    transform: translateY(-50%); /* tiré de la moitié de sa propre hauteur */
+}
+
+.btnHome {
+    width: 100%;
+    height: 150px;
+    margin: 0px;
+    font-size: 2rem;
+}
+
+.one {
+    border-radius: 87% 13% 4% 96% / 89% 43% 57% 11%;
+    border-width: 0px 2px 2px 5px;
+    margin-bottom: 5px;
+}
+
+.two {
+    border-radius: 13% 87% 96% 4% / 43% 89% 11% 57%;
+    border-width: 0px 5px 2px 2px;
+    margin-bottom: 5px;
+}
+
+.three {
+    border-radius: 96% 4% 13% 87% / 11% 57% 43% 89%;
+    border-width: 2px 2px 0px 5px;
+}
+
+.four {
+    border-radius: 4% 96% 87% 13% / 57% 11% 89% 43%;
+    border-width: 2px 5px 0px 2px;
+}
+
+.logo{height:40px;}
+
+.wrapperMenuPm > a {
+    margin-bottom: 3px;
+    background-color: #0061a9;
+    border-color: #0061a9;
+}
+
+.form-edit{
+    margin-top:40px;
+}
+
+    .form-edit .title-form {
+        text-transform: uppercase;
+        margin-bottom: 30px;
+        font-size: 25px;
+    }
+
+.form-edit hr {margin-bottom:20px;}
+
+.form-check {
+    padding-left: 0 !important;
+}
+
+.spacerQuantity {
+    margin-top: 241px;
+}
+
+.quantity-tb{ width:100px;}

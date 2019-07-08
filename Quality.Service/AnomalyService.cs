@@ -6,6 +6,7 @@ using System.Linq;
 using System.Collections;
 using Domain=Quality.Domain;
 using System;
+using AutoMapper;
 
 namespace Quality.Service
 {
@@ -24,17 +25,7 @@ namespace Quality.Service
             using (var unitOfWork = new UnitOfWork(new QualityContext()))
             {
                 IEnumerable<DataAccess.Anomaly> AnomalyCollection = unitOfWork.AnomalyRepository.GetAll();
-                if (AnomalyCollection != null)
-                {
-                    var dom= new Domain.Anomaly()
-                    {
-                        CreationDate = AnomalyCollection.First().CreationDate
-                    };
-                    var res = new List<Domain.Anomaly>();
-                    res.Add(dom);
-                    return res;
-                   // Mapper.Map<AnomalyCollection, IList<MyStuffViewModel>>(obj);
-                }
+                return Mapper.Map<IEnumerable<DataAccess.Anomaly>, IEnumerable<Domain.Anomaly>>(AnomalyCollection);
             }
             return new List<Domain.Anomaly>();
         }

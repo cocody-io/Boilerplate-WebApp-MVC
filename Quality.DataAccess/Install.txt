@@ -3,6 +3,6 @@
 
 export codefirdt : 
 
-Add-Migration First
+Add-Migration Init -ProjectName "Quality.DataAccess"
 
 update-database //-script

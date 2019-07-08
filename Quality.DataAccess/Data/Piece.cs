@@ -17,8 +17,8 @@ namespace Quality.DataAccess
 
         public virtual ICollection<Anomaly> AnomalyCollection { get; set; }
 
-        public int SupplierId { get; set; }
-        [ForeignKey("SupplierId")]
-        public virtual Supplier Supplier { get; set; }
+        public int ref_SupplierId { get; set; }
+        [ForeignKey("ref_SupplierId")]
+        public virtual ref_Supplier Ref_Supplier { get; set; }
     }
 }

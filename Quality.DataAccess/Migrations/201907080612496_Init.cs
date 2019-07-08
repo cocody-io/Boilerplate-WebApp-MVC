@@ -65,7 +65,7 @@ namespace Quality.DataAccess.Migrations
                         IsRyoCQ = c.Boolean(nullable: false),
                     })
                 .PrimaryKey(t => t.ref_CQId)
-                .Index(t => t.ProductionAreaName, unique: true);
+                .Index(t => t.ProductionAreaName);
             
             CreateTable(
                 "dbo.Expertise",
@@ -121,7 +121,7 @@ namespace Quality.DataAccess.Migrations
                         ProductionAreaName = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.ref_CauseZEId)
-                .Index(t => t.ProductionAreaName, unique: true);
+                .Index(t => t.ProductionAreaName);
             
             CreateTable(
                 "dbo.ref_Imputation",
@@ -186,7 +186,7 @@ namespace Quality.DataAccess.Migrations
                         ProductionAreaName = c.String(nullable: false, maxLength: 50),
                     })
                 .PrimaryKey(t => t.ref_MachineId)
-                .Index(t => t.ProductionAreaName, unique: true);
+                .Index(t => t.ProductionAreaName);
             
             CreateTable(
                 "dbo.ref_PieceType",
