@@ -16,56 +16,31 @@ namespace Quality.Service
     /// </summary>
     public class AnomalyService : IAnomalyService
     {
+
         /// <summary>
-        /// GetAllAnomaly
+        /// CreateTicketNC
         /// </summary>
-        /// <returns>Anomaly</returns>
-        public IEnumerable<Domain.Anomaly> GetAllAnomaly()
+        /// <param name="name">TicketNC</param>
+        /// <returns>bool</returns>
+        public bool CreateTicketNC(Domain.TicketNC model)
         {
+            if (model == null) return false;
+
+            DataAccess.TicketNC ticketNC = Mapper.Map<Domain.TicketNC, DataAccess.TicketNC>(model);
+            DataAccess.Anomaly anomaly = new Anomaly()
+            {
+                CreationDate = DateTime.Now,
+                ref_ProductionAreaId = model.ref_ProductionAreaId
+            };
             using (var unitOfWork = new UnitOfWork(new QualityContext()))
             {
-                IEnumerable<DataAccess.Anomaly> AnomalyCollection = unitOfWork.AnomalyRepository.GetAll();
-                return Mapper.Map<IEnumerable<DataAccess.Anomaly>, IEnumerable<Domain.Anomaly>>(AnomalyCollection);
+                unitOfWork.AnomalyRepository.Add(anomaly);
+                if(unitOfWork.Complete() > 0==false) return false;
+                ticketNC.Anomaly = anomaly;
+                unitOfWork.TicketNCRepository.Add(ticketNC);
+                return (unitOfWork.Complete() > 0);
             }
-            return new List<Domain.Anomaly>();
         }
-
-        /// <summary>
-        /// GetAllCustomer
-        /// </summary>
-        /// <returns></returns>
-        //public IEnumerable<CustomerDomain> GetAllCustomer()
-        //{
-        //    using (var unitOfWork = new UnitOfWork(new QualityContext()))
-        //    {
-        //        IEnumerable<Customer> customers = unitOfWork.Customers.GetAll();
-        //        if (customers != null)
-        //        {
-        //            List<CustomerDomain> res = new List<CustomerDomain>();
-        //            res.AddRange(customers.Select(c => (new CustomerDomain(c))));
-        //            return res;
-        //        }
-        //    }
-        //    return new List<CustomerDomain>();
-        //}
-
-        /// <summary>
-        /// CreateCustomer
-        /// </summary>
-        /// <param name="name"></param>
-        /// <returns>bool</returns>
-        //public bool CreateCustomer(string name)
-        //{
-        //    Customer annoyingCustomer = new Customer()
-        //    {
-        //        Name = name,
-        //    };
-        //    using (var unitOfWork = new UnitOfWork(new QualityContext()))
-        //    {
-        //        unitOfWork.Customers.Add(annoyingCustomer);
-        //        return (unitOfWork.Complete() > 0);
-        //    }
-        //}
 
     }
 }

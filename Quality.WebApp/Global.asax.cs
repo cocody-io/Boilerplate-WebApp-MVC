@@ -26,7 +26,7 @@ namespace Quality.WebApp
         protected void Application_Error(Object sender, EventArgs e)
         {
             Exception ex = Server.GetLastError();
-            Context.ClearError();
+            //Context.ClearError();
             Log4NetLoggingService logger = (Log4NetLoggingService)DependencyResolver.Current.GetService(typeof(ILoggingService));
             logger.LogFatal(this, "", ex);
         }

@@ -20,23 +20,13 @@ namespace Quality.DataAccess
 
         public int PersonGroupId { get; set; }
 
-        //public int ProductTypeId { get; set; }
-        //public int ProductCodeId { get; set; }
-
         public DateTime ManufacturedDate { get; set; }
-
-        //public int CDId { get; set; }
 
         public string Observation { get; set; }
 
         public int Quantity { get; set; }
 
-        //public int UnitId { get; set; }
-
-        //public int TypePieceId { get; set; }
-
         public int? Order { get; set; }
-
 
         public virtual Expertise Expertise { get; set; }
     

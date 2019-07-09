@@ -9,6 +9,6 @@ namespace Quality.Service
 {
     public interface IAnomalyService
     {
-        IEnumerable<Anomaly> GetAllAnomaly();
+       bool CreateTicketNC(Domain.TicketNC model);
     }
 }

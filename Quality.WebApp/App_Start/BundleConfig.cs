@@ -21,13 +21,14 @@ namespace Quality.WebApp
 
             bundles.Add(new ScriptBundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.min.js",
-                      "~/Scripts/bootstrap-datepicker.min.js",
-                      "~/Scripts/bootstrap-datepicker.fr.min.js",
+                      "~/Scripts/flatpickr.min.js",
+                      "~/Scripts/flatpicker-fr.js",
+                       "~/Scripts/cookie.js",
                       "~/Scripts/respond.min.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.min.css",
-                      "~/Content/bootstrap-datepicker3.standalone.min.css",
+                      "~/Content/flatpickr.min.css",
                       "~/Content/site.css"));
         }
     }

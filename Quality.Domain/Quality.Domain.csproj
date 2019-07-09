@@ -42,6 +42,8 @@
   <ItemGroup>
     <Compile Include="Anomaly.cs" />
     <Compile Include="CQ.cs" />
+    <Compile Include="ProductionArea.cs" />
+    <Compile Include="TicketNC.cs" />
     <Compile Include="Unit.cs" />
     <Compile Include="ProductCode.cs" />
     <Compile Include="PieceType.cs" />

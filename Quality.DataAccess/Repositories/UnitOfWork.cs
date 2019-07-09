@@ -18,7 +18,9 @@ namespace Quality.DataAccess.Repositories
         public ICQRepository CQRepository { get; set; }
         public IPieceTypeRepository PieceTypeRepository { get; set; }
         public IUnitRepository UnitRepository { get; set; }
-        
+        public ITicketNCRepository TicketNCRepository { get; set; }
+        public IProductionAreaRepository ProductionAreaRepository { get; set; }
+
 
 
         public UnitOfWork(QualityContext context)
@@ -31,6 +33,8 @@ namespace Quality.DataAccess.Repositories
             CQRepository = new CQRepository(_context);
             PieceTypeRepository = new PieceTypeRepository(_context);
             UnitRepository = new UnitRepository(_context);
+            TicketNCRepository = new TicketNCRepository(_context);
+            ProductionAreaRepository = new ProductionAreaRepository(_context);
         }
 
         public int Complete()

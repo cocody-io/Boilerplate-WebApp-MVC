@@ -1,4 +1,5 @@
-﻿using Quality.Domain;
+﻿using AutoMapper;
+using Quality.Domain;
 using Quality.Service;
 using Quality.WebApp.Models;
 using System;
@@ -10,22 +11,30 @@ namespace Quality.WebApp
 {
     public class PMControllerBusiness
     {
-        private string _productionArea = "PM";
-
-        private IAnomalyService _anomalyService;
+        public string ProductionArea { get; set; }
         private IRefTablesService _refTablesService;
+        private IAnomalyService _anomalyService;
 
         public PMControllerBusiness(IAnomalyService anomalyService, IRefTablesService refTablesService)
         {
-            _anomalyService = anomalyService;
             _refTablesService = refTablesService;
+            _anomalyService = anomalyService;
         }
 
-        public TicketNCViewModel InitModel()
+        /// <summary>
+        /// InitModel
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>TicketNCViewModel</returns>
+        public TicketNCViewModel InitModel(TicketNCViewModel model)
         {
-            TicketNCViewModel model = new TicketNCViewModel();
+            if (model == null)
+            {
+                model = new TicketNCViewModel();
+            }
+
             var machines = _refTablesService.GetAllMachine();
-            model.MachineCollection = machines.Where(m => m.ProductionAreaName == _productionArea)
+            model.MachineCollection = machines.Where(m => m.ProductionAreaName == ProductionArea)
                                                       .Select(m => new SelectListItem() { Value = m.MachineId.ToString(), Text = m.Name })
                                                       .ToList();
             var productTypes = _refTablesService.GetAllProductType();
@@ -37,7 +46,7 @@ namespace Quality.WebApp
                                                           .ToList();
 
             var cqs = _refTablesService.GetAllCQ();
-            model.CQCollection = cqs.Where(m => m.ProductionAreaName == _productionArea)
+            model.CQCollection = cqs.Where(m => m.ProductionAreaName == ProductionArea)
                                     .Select(m => new SelectListItem() { Value = m.CQId.ToString(), Text = m.Name })
                                     .ToList();
 
@@ -46,12 +55,35 @@ namespace Quality.WebApp
                                                           .ToList();
 
             IEnumerable<Unit> units = _refTablesService.GetAllUnits();
-            if(units!=null)
+            if (units != null)
             {
                 model.UnitCollection = units.Select(m => new SelectListItem() { Value = m.UnitId.ToString(), Text = m.Name }).ToList();
                 model.UnitId = units.Where(u => u.Name.ToUpper() == "KG").FirstOrDefault().UnitId;
             }
+
+            model.ProductionAreaId = _refTablesService.GetAllProductionAreas().Where(p=>p.Name==ProductionArea).FirstOrDefault().ProductionAreaId;
             return model;
+        }
+
+        /// <summary>
+        /// InitModel
+        /// </summary>
+        /// <returns>TicketNCViewModel</returns>
+        public TicketNCViewModel InitModel()
+        {
+            return InitModel(null);
+        }
+
+        /// <summary>
+        /// Create
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>TicketNCViewModel</returns>
+        public bool Create (TicketNCViewModel model)
+        {
+            if (model == null) return false;
+            Domain.TicketNC ticketNC = Mapper.Map<TicketNCViewModel, Domain.TicketNC>(model);
+            return _anomalyService.CreateTicketNC(ticketNC);
         }
 
         

@@ -21,5 +21,6 @@ namespace Quality.Service
 
         IEnumerable<Domain.Unit> GetAllUnits();
 
+        IEnumerable<Domain.ProductionArea> GetAllProductionAreas();
     }
 }

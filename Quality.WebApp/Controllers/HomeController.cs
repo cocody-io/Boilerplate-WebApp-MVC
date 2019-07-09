@@ -6,12 +6,34 @@ namespace Quality.WebApp.Controllers
     public class HomeController : Controller
     {
         private IAnomalyService _anomalyService;
-        private HomeControllerBusiness _homeControllerBusiness;
 
         public HomeController(IAnomalyService anomalyService)
         {
             _anomalyService = anomalyService;
-            _homeControllerBusiness = new HomeControllerBusiness(_anomalyService);
+        }
+
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            if (requestContext.HttpContext.Request.Cookies["productionarea"]?.Value != null)
+            {
+                string productionArea = requestContext.HttpContext.Request.Cookies["productionarea"].Value.ToUpper();
+                switch (productionArea)
+                {
+                    case "PM":
+                        requestContext.HttpContext.Response.Redirect(Url.Action("Index","PM"));
+                        break;
+                    case "PC":
+                        requestContext.HttpContext.Response.Redirect(Url.Action("Index", "PC"));
+                        break;
+                    case "PR ROBOTS":
+                        requestContext.HttpContext.Response.Redirect(Url.Action("Index", "PRROBOTS"));
+                        break;
+                    case "PR TRINGLES":
+                        requestContext.HttpContext.Response.Redirect(Url.Action("Index", "PRTRINGLES"));
+                        break;
+                }
+            }
         }
 
         /// <summary>
@@ -20,24 +42,9 @@ namespace Quality.WebApp.Controllers
         /// <returns></returns>
         public ActionResult Index()
         {
-            HomeViewModel homeViewModel = _homeControllerBusiness.GetHomeViewModel();
-
-            return View(homeViewModel);
+            return View();
         }
-
-        /// <summary>
-        /// CreateCustomer
-        /// </summary>
-        /// <param name="model"></param>
-        /// <returns></returns>
-        //[HttpPost]
-        //public ActionResult CreateCustomer(HomeViewModel model)
-        //{
-        //    _customerService.CreateCustomer(model?.NewCustomerName);
-        //    HomeViewModel homeViewModel = _homeControllerBusiness.GetHomeViewModel();
-
-        //    return RedirectToAction("Index", homeViewModel);
-        //}
+        
 
         public ActionResult About()
         {

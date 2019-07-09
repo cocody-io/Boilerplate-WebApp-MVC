@@ -6,8 +6,35 @@
 
 
 <div class="lineBtnHome">
-    <input type="button" value="PM" class="btn btn-outline-primary btnHome one" onclick="location.href='@Url.Action("Index","PM")';" />
-    <input type="button" value="PR tringles" class="btn btn-outline-primary btnHome two" />
-    <input type="button" value="PC" class="btn btn-outline-primary btnHome three" />
-    <input type="button" value="PR robots" class="btn btn-outline-primary btnHome four" />
+    <input type="button" value="PM" class="btn btn-outline-primary btnHome one" id="PMId" />
+    <input type="button" value="PR tringles" class="btn btn-outline-primary btnHome two" id="PCId"/>
+    <input type="button" value="PC" class="btn btn-outline-primary btnHome three" id="PRROBOTSId"/>
+    <input type="button" value="PR robots" class="btn btn-outline-primary btnHome four" id="PRTRINGLESId"/>
 </div>
+
+@section scripts {
+    <script>
+        var cookieName = "productionarea";
+
+       
+
+        $("#PMId").click(function (event) {
+            createCookie(cookieName, 'PM',365);
+            window.location.href = "@Url.Action("Index", "PM")";
+        });
+        $("#PCId").click(function (event) {
+            createCookie(cookieName, 'PC');
+            window.location.href = "@Url.Action("Index", "PC")";
+        });
+        $("#PRROBOTSId").click(function (event) {
+            createCookie(cookieName, 'PR ROBOTS');
+            window.location.href = "@Url.Action("Index", "PRROBOTS")";
+        });
+        $("#PRTRINGLESId").click(function (event) {
+            createCookie(cookieName, 'PR TRINGLES');
+            window.location.href = "@Url.Action("Index", "PRTRINGLES")";
+        });
+
+
+    </script>
+}

@@ -7,19 +7,20 @@ using System.Web.Mvc;
 
 namespace Quality.WebApp.Controllers
 {
-    public class PMController : Controller
+    public class PMController : BaseController
     {
-        private IAnomalyService _anomalyService;
-        private IRefTablesService _refTablesService;
         private PMControllerBusiness _pmControllerBusiness;
 
-        public PMController(IAnomalyService anomalyService, IRefTablesService refTablesService)
+        public PMController(IAnomalyService anomalyService, IRefTablesService refTablesService) : base(anomalyService, refTablesService)
         {
-            _anomalyService = anomalyService;
-            _refTablesService = refTablesService;
             _pmControllerBusiness = new PMControllerBusiness(_anomalyService, _refTablesService);
         }
 
+        protected override void Initialize(System.Web.Routing.RequestContext requestContext)
+        {
+            base.Initialize(requestContext);
+            _pmControllerBusiness.ProductionArea = _productionArea;
+        }
 
         public ActionResult Index()
         {
@@ -31,5 +32,21 @@ namespace Quality.WebApp.Controllers
             TicketNCViewModel model = _pmControllerBusiness.InitModel();
             return View("TicketNC", model);
         }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Create(TicketNCViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                bool result =  _pmControllerBusiness.Create(model);
+                model.Success = result;
+                model.InformationToPopup = result ? "Le ticket a bien été enregistré" : "Oups une erreur est survenue lors de l'enregistrement";
+            }
+            model =  _pmControllerBusiness.InitModel(model);
+            return View("TicketNC", model);
+        }
+           
     }
 }

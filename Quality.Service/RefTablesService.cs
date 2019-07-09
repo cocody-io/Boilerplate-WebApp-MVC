@@ -90,5 +90,18 @@ namespace Quality.Service
                 return Mapper.Map<IEnumerable<DataAccess.ref_Unit>, IEnumerable<Domain.Unit>>(units);
             }
         }
+
+        /// <summary>
+        /// GetAllProductionAreas
+        /// </summary>
+        /// <returns>IEnumerable<PieceType> </returns>
+        public IEnumerable<Domain.ProductionArea> GetAllProductionAreas()
+        {
+            using (var unitOfWork = new UnitOfWork(new QualityContext()))
+            {
+                IEnumerable<DataAccess.ref_ProductionArea> productionAreas = unitOfWork.ProductionAreaRepository.GetAll();
+                return Mapper.Map<IEnumerable<DataAccess.ref_ProductionArea>, IEnumerable<Domain.ProductionArea>>(productionAreas);
+            }
+        }
     }
 }
