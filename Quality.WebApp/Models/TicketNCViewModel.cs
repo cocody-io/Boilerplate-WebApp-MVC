@@ -13,6 +13,9 @@ namespace Quality.WebApp
         public DateTime? CreationDate { get; set; }
 
         [Required]
+        public string CreateDateTime { get; set; }
+
+        [Required]
         public int? MachineId { get; set; }
 
         [Required]
@@ -26,10 +29,10 @@ namespace Quality.WebApp
 
         [Required]
         public int? ProductCodeId { get; set; }
+        public string ProductCodeName { get; set; }
 
         [Required]
-        [DisplayFormat(DataFormatString = "{0:n0}")]
-        public int? Quantity { get; set; }
+        public decimal? Quantity { get; set; }
 
         public int? Order { get; set; }
 
@@ -46,6 +49,7 @@ namespace Quality.WebApp
 
         [Required]
         public int? UnitId { get; set; }
+        public string UnitName { get; set; }
 
         public int ProductionAreaId { get; set; }
 
@@ -58,5 +62,8 @@ namespace Quality.WebApp
 
         public string InformationToPopup { get; set; }
         public bool Success { get; set; }
+
+        public int TicketNCId { get; set; }
+       
     }
 }

@@ -24,6 +24,7 @@ namespace Quality.WebApp
                 InitDataToDomain(cfg);
                 InitDomainToData(cfg);
                 InitViewModelToDomain(cfg);
+                InitDomainToViewModel(cfg);
             });
 
 
@@ -48,6 +49,24 @@ namespace Quality.WebApp
                 .ForMember(d => d.ref_ProductTypeId, opt => opt.MapFrom(src => src.ProductTypeId))
                 .ForMember(d => d.ref_UnitId, opt => opt.MapFrom(src => src.UnitId))
                 .ForMember(d => d.ref_ProductionAreaId, opt => opt.MapFrom(src => src.ProductionAreaId));
+
+            cfg.CreateMap<AnomalyViewModel, Domain.Anomaly>();
+        }
+
+        private static void InitDomainToViewModel(IMapperConfigurationExpression cfg)
+        {
+            cfg.CreateMap<Domain.TicketNC, TicketNCViewModel>()
+                .ForMember(d => d.CQId, opt => opt.MapFrom(src => src.ref_CQId))
+                .ForMember(d => d.MachineId, opt => opt.MapFrom(src => src.ref_MachineId))
+                .ForMember(d => d.PieceTypeId, opt => opt.MapFrom(src => src.ref_PieceTypeId))
+                .ForMember(d => d.ProductCodeId, opt => opt.MapFrom(src => src.ref_ProductCodeId))
+                .ForMember(d => d.ProductTypeId, opt => opt.MapFrom(src => src.ref_ProductTypeId))
+                .ForMember(d => d.UnitId, opt => opt.MapFrom(src => src.ref_UnitId))
+                .ForMember(d => d.ProductionAreaId, opt => opt.MapFrom(src => src.ref_ProductionAreaId))
+                .ForMember(d => d.UnitName, opt => opt.MapFrom(src => src.Ref_Unit != null ? src.Ref_Unit.Name : string.Empty))
+                .ForMember(d => d.ProductCodeName, opt => opt.MapFrom(src => src.ref_ProductCode != null ? src.ref_ProductCode.Code : string.Empty));
+
+            cfg.CreateMap<Domain.Anomaly,AnomalyViewModel>();
         }
 
         private static void InitDomainToData(IMapperConfigurationExpression cfg)
@@ -57,7 +76,8 @@ namespace Quality.WebApp
 
         private static void InitDataToDomain(IMapperConfigurationExpression cfg)
         {
-            cfg.CreateMap<DataAccess.Anomaly, Domain.Anomaly>().ForMember(d => d.Id, opt => opt.MapFrom(src => src.AnomalyId));
+            cfg.CreateMap<DataAccess.Anomaly, Domain.Anomaly>();
+            cfg.CreateMap<DataAccess.TicketNC, Domain.TicketNC>();
             cfg.CreateMap<DataAccess.ref_Machine, Domain.Machine>().ForMember(d => d.MachineId, opt => opt.MapFrom(src => src.ref_MachineId));
             cfg.CreateMap<DataAccess.ref_ProductType, Domain.ProductType>().ForMember(d => d.ProductTypeId, opt => opt.MapFrom(src => src.ref_ProductTypeId));
             cfg.CreateMap<DataAccess.ref_ProductCode, Domain.ProductCode>().ForMember(d => d.ProductCodeId, opt => opt.MapFrom(src => src.ref_ProductCodeId));

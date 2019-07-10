@@ -24,13 +24,20 @@ namespace Quality.WebApp.Controllers
 
         public ActionResult Index()
         {
-            return View();
+            HomePMViewModel model = _pmControllerBusiness.InitHomePMViewModel();
+            return View("Index", model);
         }
 
         public ActionResult TicketNC()
         {
-            TicketNCViewModel model = _pmControllerBusiness.InitModel();
+            TicketNCViewModel model = _pmControllerBusiness.InitTicketNCModel();
             return View("TicketNC", model);
+        }
+
+        public ActionResult H()
+        {
+            HViewModel model = _pmControllerBusiness.InitHViewModel();
+            return View("H", model);
         }
 
 
@@ -44,7 +51,7 @@ namespace Quality.WebApp.Controllers
                 model.Success = result;
                 model.InformationToPopup = result ? "Le ticket a bien été enregistré" : "Oups une erreur est survenue lors de l'enregistrement";
             }
-            model =  _pmControllerBusiness.InitModel(model);
+            model =  _pmControllerBusiness.InitTicketNCModel(model);
             return View("TicketNC", model);
         }
            

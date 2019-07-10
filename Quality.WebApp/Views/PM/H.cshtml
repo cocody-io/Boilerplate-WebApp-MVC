@@ -1,0 +1,41 @@
+﻿@model Quality.WebApp.HViewModel
+
+
+@using (Html.BeginForm("Create", "PM", FormMethod.Post, new { @class = "form-edit" }))
+{
+    @Html.AntiForgeryToken();
+    @Html.ValidationSummary(true);
+    <h3 class="title-form">Encodage H sans identification</h3><hr />
+
+        if(!string.IsNullOrEmpty(Model.InformationToPopup) )
+        {
+            <h5 class="@(Model.Success?"alert alert-success":"alert alert-danger")">@Model.InformationToPopup</h5>
+        }
+        <div class="row">
+            <div class="col-md-5">
+                
+
+
+            </div>
+
+            <div class="col-md-7">
+               
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 text-center">
+                <button type="submit" class="btn btn-primary btn-lg btn-large">Enregistrer</button>
+            </div>
+        </div>
+
+
+}
+
+    @section scripts {
+        <script>
+      
+        </script>
+    }
+
+

@@ -17,19 +17,21 @@ namespace Quality.Domain
 
         public string Observation { get; set; }
 
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         public int? Order { get; set; }
 
         public int ref_MachineId { get; set; }
 
         public int ref_ProductCodeId { get; set; }
+        public ProductCode ref_ProductCode { get; set; }
 
         public int ref_ProductTypeId { get; set; }
 
         public int ref_PieceTypeId { get; set; }
 
         public int ref_UnitId { get; set; }
+        public Unit Ref_Unit { get; set; }
 
         public int ref_CQId { get; set; }
 

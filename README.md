@@ -1,5 +1,18 @@
-# Boilerplate-WebApp-MVC
-Boilerplate WebApp .net MVC / UnitOfWork with EntityFramework / Log4net / Cache
-EF : Model First
+### How to install
 
-Nb: execute script.sql in Quality.DataAccess/ScriptSQL
+1 - Create a database "Quality" in SQL Server
+
+2 - Update the connection string in web.config
+
+3 - Build solution to get Packages
+
+4 - Open the console package manager (Console du Gestionnaire de package)
+
+5 - Run command :  update-database  -ProjectName "Quality.DataAccess" 
+
+6 - Execute script.sql in Quality.DataAccess/ScriptSQL
+
+
+
+**Table of Contents**
+Required : Visual studio community 2017

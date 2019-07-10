@@ -3,7 +3,7 @@ namespace Quality.DataAccess.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Init : DbMigration
+    public partial class first : DbMigration
     {
         public override void Up()
         {
@@ -61,8 +61,9 @@ namespace Quality.DataAccess.Migrations
                         ref_CQId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
                         ProductionAreaName = c.String(nullable: false, maxLength: 50),
-                        IsSupplierCQ = c.Boolean(nullable: false),
-                        IsRyoCQ = c.Boolean(nullable: false),
+                        IsSupplierCQ = c.Boolean(),
+                        IsRyoCQ = c.Boolean(),
+                        Code = c.Int(),
                     })
                 .PrimaryKey(t => t.ref_CQId)
                 .Index(t => t.ProductionAreaName);
@@ -129,8 +130,10 @@ namespace Quality.DataAccess.Migrations
                     {
                         ref_ImputationId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 250),
+                        ProductionAreaName = c.String(nullable: false, maxLength: 50),
                     })
-                .PrimaryKey(t => t.ref_ImputationId);
+                .PrimaryKey(t => t.ref_ImputationId)
+                .Index(t => t.ProductionAreaName);
             
             CreateTable(
                 "dbo.ref_Ventilation",
@@ -138,8 +141,10 @@ namespace Quality.DataAccess.Migrations
                     {
                         ref_VentilationId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 250),
+                        ProductionAreaName = c.String(nullable: false, maxLength: 50),
                     })
-                .PrimaryKey(t => t.ref_VentilationId);
+                .PrimaryKey(t => t.ref_VentilationId)
+                .Index(t => t.ProductionAreaName);
             
             CreateTable(
                 "dbo.TicketNC",
@@ -151,7 +156,7 @@ namespace Quality.DataAccess.Migrations
                         PersonGroupId = c.Int(nullable: false),
                         ManufacturedDate = c.DateTime(nullable: false),
                         Observation = c.String(),
-                        Quantity = c.Int(nullable: false),
+                        Quantity = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Order = c.Int(),
                         ref_MachineId = c.Int(nullable: false),
                         ref_ProductCodeId = c.Int(nullable: false),
@@ -230,20 +235,20 @@ namespace Quality.DataAccess.Migrations
                     {
                         PieceId = c.Int(nullable: false, identity: true),
                         Identifier = c.String(maxLength: 250),
-                        SupplierId = c.Int(nullable: false),
+                        ref_SupplierId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PieceId)
-                .ForeignKey("dbo.Supplier", t => t.SupplierId, cascadeDelete: true)
-                .Index(t => t.SupplierId);
+                .ForeignKey("dbo.ref_Supplier", t => t.ref_SupplierId, cascadeDelete: true)
+                .Index(t => t.ref_SupplierId);
             
             CreateTable(
-                "dbo.Supplier",
+                "dbo.ref_Supplier",
                 c => new
                     {
-                        SupplierId = c.Int(nullable: false, identity: true),
+                        ref_SupplierId = c.Int(nullable: false, identity: true),
                         Name = c.String(maxLength: 250),
                     })
-                .PrimaryKey(t => t.SupplierId);
+                .PrimaryKey(t => t.ref_SupplierId);
             
             CreateTable(
                 "dbo.ref_ProductionArea",
@@ -259,7 +264,7 @@ namespace Quality.DataAccess.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.Anomaly", "ref_ProductionAreaId", "dbo.ref_ProductionArea");
-            DropForeignKey("dbo.Piece", "SupplierId", "dbo.Supplier");
+            DropForeignKey("dbo.Piece", "ref_SupplierId", "dbo.ref_Supplier");
             DropForeignKey("dbo.Anomaly", "PieceId", "dbo.Piece");
             DropForeignKey("dbo.HCQ", "ref_CQId", "dbo.ref_CQ");
             DropForeignKey("dbo.Expertise", "ExpertiseId", "dbo.TicketNC");
@@ -278,7 +283,7 @@ namespace Quality.DataAccess.Migrations
             DropForeignKey("dbo.Expertise", "NocoId", "dbo.Noco");
             DropForeignKey("dbo.HCQ", "HId", "dbo.H");
             DropForeignKey("dbo.H", "HId", "dbo.Anomaly");
-            DropIndex("dbo.Piece", new[] { "SupplierId" });
+            DropIndex("dbo.Piece", new[] { "ref_SupplierId" });
             DropIndex("dbo.ref_Machine", new[] { "ProductionAreaName" });
             DropIndex("dbo.TicketNC", new[] { "ref_CQId" });
             DropIndex("dbo.TicketNC", new[] { "ref_UnitId" });
@@ -287,6 +292,8 @@ namespace Quality.DataAccess.Migrations
             DropIndex("dbo.TicketNC", new[] { "ref_ProductCodeId" });
             DropIndex("dbo.TicketNC", new[] { "ref_MachineId" });
             DropIndex("dbo.TicketNC", new[] { "TicketNCId" });
+            DropIndex("dbo.ref_Ventilation", new[] { "ProductionAreaName" });
+            DropIndex("dbo.ref_Imputation", new[] { "ProductionAreaName" });
             DropIndex("dbo.ref_CauseZE", new[] { "ProductionAreaName" });
             DropIndex("dbo.Expertise", new[] { "ref_CQId" });
             DropIndex("dbo.Expertise", new[] { "NocoId" });
@@ -302,7 +309,7 @@ namespace Quality.DataAccess.Migrations
             DropIndex("dbo.Anomaly", new[] { "PieceId" });
             DropIndex("dbo.Anomaly", new[] { "ref_ProductionAreaId" });
             DropTable("dbo.ref_ProductionArea");
-            DropTable("dbo.Supplier");
+            DropTable("dbo.ref_Supplier");
             DropTable("dbo.Piece");
             DropTable("dbo.ref_Unit");
             DropTable("dbo.ref_ProductType");

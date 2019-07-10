@@ -226,8 +226,10 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\PMViewModel.cs" />
-    <Compile Include="Models\HomeViewModel.cs" />
+    <Compile Include="Models\AnomalyViewModel.cs" />
+    <Compile Include="Models\HomePMViewModel.cs" />
+    <Compile Include="Models\HViewModel.cs" />
+    <Compile Include="Models\TicketNCViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -237,10 +239,12 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\flatpickr.min.css" />
     <Content Include="Content\img\logo.png" />
+    <Content Include="Content\jquery.dataTables.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="log4net.config" />
+    <Content Include="Scripts\French.json" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.min.js" />
@@ -249,6 +253,7 @@
     <Content Include="Scripts\flatpickr.min.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
+    <Content Include="Scripts\jquery.dataTables.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -294,6 +299,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\PM\TicketNC.cshtml" />
     <Content Include="Views\PM\Index.cshtml" />
+    <Content Include="Views\PM\H.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

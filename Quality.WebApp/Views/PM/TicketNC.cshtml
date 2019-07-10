@@ -107,7 +107,7 @@
             </div>
 
             <div class="col-md-7">
-                <input id="timeCreationDateId" class="flatpickr flatpickr-input active form-control input-white" type="text">
+                @Html.TextBoxFor(m=>m.CreateDateTime, new { @class= "flatpickr flatpickr-input active form-control input-white" })
 
                 <div class="form-group row spacerQuantity">
                     <label for="@Html.IdFor(m => m.Quantity)" class="col-sm-2 col-form-label">Quantité</label>
@@ -148,11 +148,10 @@
 }
 
     @section scripts {
-        <script>
+        <script type="text/javascript">
         $('#@(Html.IdFor(m => m.CreationDate))').flatpickr({ defaultDate: new Date(), locale: "fr" });
-        $('#@(Html.IdFor(m => m.ManufacturedDate))').flatpickr({ locale: "fr" });
-
-        $('#timeCreationDateId').flatpickr({
+        $('#@(Html.IdFor(m => m.ManufacturedDate))').flatpickr({ defaultDate: new Date(), locale: "fr" });
+        $('#@(Html.IdFor(m => m.CreateDateTime))').flatpickr({
             noCalendar: true,
             enableTime: true,
             dateFormat: 'H:i',

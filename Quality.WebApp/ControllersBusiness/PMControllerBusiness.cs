@@ -20,13 +20,26 @@ namespace Quality.WebApp
             _refTablesService = refTablesService;
             _anomalyService = anomalyService;
         }
-
         /// <summary>
         /// InitModel
         /// </summary>
         /// <param name="model"></param>
         /// <returns>TicketNCViewModel</returns>
-        public TicketNCViewModel InitModel(TicketNCViewModel model)
+        public HomePMViewModel InitHomePMViewModel()
+        {
+            HomePMViewModel model = new HomePMViewModel() { AnomalyCollection = new List<AnomalyViewModel>() };
+            IEnumerable<Domain.Anomaly> anomalies = _anomalyService.GetAnomalyWithTicketNC();
+            model.AnomalyCollection = anomalies?.Select(a => Mapper.Map<Domain.Anomaly, AnomalyViewModel>(a))?.ToList();
+            return model;
+        }
+
+       
+        /// <summary>
+        /// InitModel
+        /// </summary>
+        /// <param name="model"></param>
+        /// <returns>TicketNCViewModel</returns>
+        public TicketNCViewModel InitTicketNCModel(TicketNCViewModel model)
         {
             if (model == null)
             {
@@ -52,7 +65,7 @@ namespace Quality.WebApp
 
             var pieceTypes = _refTablesService.GetAllPieceTypes();
             model.PieceTypeCollection = pieceTypes.Select(m => new SelectListItem() { Value = m.PieceTypeId.ToString(), Text = m.Name })
-                                                          .ToList();
+                                                  .ToList();
 
             IEnumerable<Unit> units = _refTablesService.GetAllUnits();
             if (units != null)
@@ -69,9 +82,9 @@ namespace Quality.WebApp
         /// InitModel
         /// </summary>
         /// <returns>TicketNCViewModel</returns>
-        public TicketNCViewModel InitModel()
+        public TicketNCViewModel InitTicketNCModel()
         {
-            return InitModel(null);
+            return InitTicketNCModel(null);
         }
 
         /// <summary>
@@ -82,10 +95,39 @@ namespace Quality.WebApp
         public bool Create (TicketNCViewModel model)
         {
             if (model == null) return false;
+            model.CreationDate = GetCreationDate(model.CreationDate, model.CreateDateTime);
             Domain.TicketNC ticketNC = Mapper.Map<TicketNCViewModel, Domain.TicketNC>(model);
             return _anomalyService.CreateTicketNC(ticketNC);
         }
 
-        
+        /// <summary>
+        /// GetCreationDate
+        /// </summary>
+        /// <param name="creationDate"></param>
+        /// <param name="creationDateTime"></param>
+        /// <returns>DateTime?</returns>
+        private DateTime? GetCreationDate(DateTime? creationDate, string creationDateTime)
+        {
+            if (!creationDate.HasValue || string.IsNullOrEmpty(creationDateTime) || !creationDateTime.Contains(":")) return creationDate;
+
+            string[] time = creationDateTime.Split(':');
+            if (!(time.Length == 2)) return creationDate;
+
+            int hour,minute;
+            if (!Int32.TryParse(time[0], out hour)) return creationDate;
+            if (!Int32.TryParse(time[1], out minute)) return creationDate;
+
+            return new DateTime(creationDate.Value.Year, creationDate.Value.Month, creationDate.Value.Day, hour, minute, 0);
+        }
+
+        /// <summary>
+        /// InitHViewModel
+        /// </summary>
+        /// <returns>HViewModel</returns>
+        public HViewModel InitHViewModel()
+        {
+            return new HViewModel();
+        }
+
     }
 }

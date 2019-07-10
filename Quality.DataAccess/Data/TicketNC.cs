@@ -24,7 +24,7 @@ namespace Quality.DataAccess
 
         public string Observation { get; set; }
 
-        public int Quantity { get; set; }
+        public decimal Quantity { get; set; }
 
         public int? Order { get; set; }
 

@@ -42,5 +42,17 @@ namespace Quality.Service
             }
         }
 
+        /// <summary>
+        /// GetAllAnomaly
+        /// </summary>
+        /// <returns>List<Domain.Anomaly></returns>
+        public IEnumerable<Domain.Anomaly> GetAnomalyWithTicketNC()
+        {
+            using (var unitOfWork = new UnitOfWork(new QualityContext()))
+            {
+                IEnumerable<DataAccess.Anomaly> anomalies = unitOfWork.AnomalyRepository.Find(a=>a.TicketNC!=null);
+                return Mapper.Map<IEnumerable<DataAccess.Anomaly>, IEnumerable<Domain.Anomaly>>(anomalies);
+            }
+        }
     }
 }

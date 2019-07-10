@@ -1,10 +1,4 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-@model Quality.WebApp.HomeViewModel
-
-
-
+﻿
 <div class="lineBtnHome">
     <input type="button" value="PM" class="btn btn-outline-primary btnHome one" id="PMId" />
     <input type="button" value="PR tringles" class="btn btn-outline-primary btnHome two" id="PCId"/>
@@ -15,8 +9,6 @@
 @section scripts {
     <script>
         var cookieName = "productionarea";
-
-       
 
         $("#PMId").click(function (event) {
             createCookie(cookieName, 'PM',365);
@@ -34,7 +26,6 @@
             createCookie(cookieName, 'PR TRINGLES');
             window.location.href = "@Url.Action("Index", "PRTRINGLES")";
         });
-
 
     </script>
 }

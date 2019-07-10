@@ -69,6 +69,10 @@ select {
 
 .logo{height:40px;}
 
+.wrapperMenuPm {
+    margin-top: 50px;
+}
+
 .wrapperMenuPm > a {
     margin-bottom: 3px;
     background-color: #0061a9;
@@ -108,9 +112,14 @@ select {
 .input-white{ background-color:white!important;}
 .btn-large{width:250px;}
 .text-white{color:white;}
-.titleProductionArea{text-align:center; padding:20px;}
+.titleProductionArea{text-align:center; padding-top:20px; padding-bottom:10px;}
 .input-validation-error{ border:1px red solid;}
 .field-validation-error {
     color: red;
     font-size: 12px;
+}
+.btn-action {
+    max-height: 40px;
+    height: 40px;
+    display:block;
 }

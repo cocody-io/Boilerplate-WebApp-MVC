@@ -9,8 +9,10 @@ namespace Quality.Domain
 {
     public class Anomaly
     {
-        public int Id { get; set; }
+        public int AnomalyId { get; set; }
+
         public DateTime CreationDate { get; set; }
 
+        public TicketNC TicketNC { get; set; }
     }
 }

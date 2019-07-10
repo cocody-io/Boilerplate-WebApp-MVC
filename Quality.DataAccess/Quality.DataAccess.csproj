@@ -71,29 +71,9 @@
     <Compile Include="Data\QualityContext.cs" />
     <Compile Include="Data\ref_CQ.cs" />
     <Compile Include="Data\ref_ProductionArea.cs" />
-    <Compile Include="Migrations\201907080612496_Init.cs" />
-    <Compile Include="Migrations\201907080612496_Init.Designer.cs">
-      <DependentUpon>201907080612496_Init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907080619056_cq.cs" />
-    <Compile Include="Migrations\201907080619056_cq.Designer.cs">
-      <DependentUpon>201907080619056_cq.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907080621481_cqb.cs" />
-    <Compile Include="Migrations\201907080621481_cqb.Designer.cs">
-      <DependentUpon>201907080621481_cqb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907080652030_imputation.cs" />
-    <Compile Include="Migrations\201907080652030_imputation.Designer.cs">
-      <DependentUpon>201907080652030_imputation.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907080732429_imputation1.cs" />
-    <Compile Include="Migrations\201907080732429_imputation1.Designer.cs">
-      <DependentUpon>201907080732429_imputation1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201907080742507_supplier.cs" />
-    <Compile Include="Migrations\201907080742507_supplier.Designer.cs">
-      <DependentUpon>201907080742507_supplier.cs</DependentUpon>
+    <Compile Include="Migrations\201907101018404_first.cs" />
+    <Compile Include="Migrations\201907101018404_first.Designer.cs">
+      <DependentUpon>201907101018404_first.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -125,7 +105,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DatabaseQuality.edmx.sql" />
     <Content Include="Install.txt" />
     <Content Include="ScriptSQL\insert_data_ref_table.sql" />
   </ItemGroup>
@@ -133,23 +112,8 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201907080612496_Init.resx">
-      <DependentUpon>201907080612496_Init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907080619056_cq.resx">
-      <DependentUpon>201907080619056_cq.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907080621481_cqb.resx">
-      <DependentUpon>201907080621481_cqb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907080652030_imputation.resx">
-      <DependentUpon>201907080652030_imputation.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907080732429_imputation1.resx">
-      <DependentUpon>201907080732429_imputation1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201907080742507_supplier.resx">
-      <DependentUpon>201907080742507_supplier.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201907101018404_first.resx">
+      <DependentUpon>201907101018404_first.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
